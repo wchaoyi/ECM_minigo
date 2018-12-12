@@ -429,10 +429,7 @@ def const_model_inference_fn(features):
 
 
 def get_estimator():
-    if FLAGS.use_tpu:
-        return _get_tpu_estimator()
-    else:
-        return _get_nontpu_estimator()
+    return _get_nontpu_estimator()
 
 
 def _get_nontpu_estimator():
@@ -446,32 +443,7 @@ def _get_nontpu_estimator():
         params=FLAGS.flag_values_dict())
 
 
-def _get_tpu_estimator():
-    tpu_cluster_resolver = tf.contrib.cluster_resolver.TPUClusterResolver(
-        FLAGS.tpu_name, zone=None, project=None)
-    tpu_grpc_url = tpu_cluster_resolver.get_master()
 
-    run_config = tpu_config.RunConfig(
-        master=tpu_grpc_url,
-        evaluation_master=tpu_grpc_url,
-        model_dir=FLAGS.work_dir,
-        save_checkpoints_steps=max(1000, FLAGS.iterations_per_loop),
-        save_summary_steps=FLAGS.summary_steps,
-        keep_checkpoint_max=FLAGS.keep_checkpoint_max,
-        session_config=tf.ConfigProto(
-            allow_soft_placement=True, log_device_placement=True),
-        tpu_config=tpu_config.TPUConfig(
-            iterations_per_loop=FLAGS.iterations_per_loop,
-            num_shards=FLAGS.num_tpu_cores,
-            per_host_input_for_training=tpu_config.InputPipelineConfig.PER_HOST_V2))
-
-    return tpu_estimator.TPUEstimator(
-        use_tpu=FLAGS.use_tpu,
-        model_fn=model_fn,
-        config=run_config,
-        train_batch_size=FLAGS.train_batch_size * FLAGS.num_tpu_cores,
-        eval_batch_size=FLAGS.train_batch_size * FLAGS.num_tpu_cores,
-        params=FLAGS.flag_values_dict())
 
 
 def bootstrap():
@@ -521,58 +493,3 @@ def freeze_graph(model_path):
         f.write(out_graph.SerializeToString())
 
 
-def freeze_graph_tpu(model_path):
-    """Custom freeze_graph implementation for Cloud TPU."""
-
-    assert model_path
-    assert FLAGS.tpu_name
-    if FLAGS.tpu_name.startswith('grpc://'):
-        tpu_grpc_url = FLAGS.tpu_name
-    else:
-        tpu_cluster_resolver = tf.contrib.cluster_resolver.TPUClusterResolver(
-            FLAGS.tpu_name, zone=None, project=None)
-        tpu_grpc_url = tpu_cluster_resolver.get_master()
-    sess = tf.Session(tpu_grpc_url)
-
-
-    output_names = []
-    with sess.graph.as_default():
-        # Replicate the inference function for each TPU core.
-        replicated_features = []
-        for i in range(FLAGS.num_tpu_cores):
-            features = tf.placeholder(
-                tf.float32, [None, go.N, go.N,
-                             features_lib.NEW_FEATURES_PLANES],
-                name='pos_tensor_%d' % i)
-            replicated_features.append((features,))
-        outputs = tf.contrib.tpu.replicate(
-            const_model_inference_fn, replicated_features)
-
-        # The replicate op assigns names like output_0_shard_0 to the output
-        # names. Give them human readable names.
-        for i, (policy_output, value_output, _) in enumerate(outputs):
-            policy_name = 'policy_output_%d' % i
-            value_name = 'value_output_%d' % i
-            output_names.extend([policy_name, value_name])
-            tf.identity(policy_output, policy_name)
-            tf.identity(value_output, value_name)
-
-        # Add initialize and shutdown TPU ops to the graph.
-        # The ops aren't actually executed here. Instead, the serialized ops are
-        # run by the C++ TpuDualNet implementation to perform one-time
-        # initialization and shutdown of the TPU. We do it this way because
-        # TensorFlow currently doesn't expose a C++ API for TPU initialization
-        # and shutdown.
-        tf.contrib.tpu.initialize_system()
-        tf.contrib.tpu.shutdown_system()
-
-        tf.train.Saver().restore(sess, model_path)
-
-    # Make sure we serialize the initialize and shutdown TPU ops.
-    output_names.extend(['ConfigureDistributedTPU', 'ShutdownDistributedTPU'])
-
-    # Freeze the graph.
-    model_def = tf.graph_util.convert_variables_to_constants(
-        sess, sess.graph.as_graph_def(), output_names)
-    with tf.gfile.GFile(model_path + '.pb', 'wb') as f:
-        f.write(model_def.SerializeToString())

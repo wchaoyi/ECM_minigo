@@ -24,10 +24,7 @@ FLAGS = flags.FLAGS
 
 def main(unused_argv):
     """Freeze a model to a GraphDef proto."""
-    if FLAGS.use_tpu:
-        dual_net.freeze_graph_tpu(FLAGS.model_path)
-    else:
-        dual_net.freeze_graph(FLAGS.model_path)
+    dual_net.freeze_graph(FLAGS.model_path)
 
 
 if __name__ == "__main__":
