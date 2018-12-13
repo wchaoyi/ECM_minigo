@@ -25,6 +25,7 @@ import os.path
 
 import tensorflow as tf
 from tensorflow.contrib import summary
+from tensorflow.contrib.tpu.python.tpu import tpu_estimator
 
 
 import features as features_lib
@@ -334,10 +335,8 @@ def model_fn(features, labels, mode, params):
         eval_metrics=(eval_metrics_only_fn, metric_args),
         host_call=(host_call_fn, metric_args)
     )
-    if params['use_tpu']:
-        return tpu_estimator_spec
-    else:
-        return tpu_estimator_spec.as_estimator_spec()
+
+    return tpu_estimator_spec.as_estimator_spec()
 
 
 def model_inference_fn(features, training, params):
