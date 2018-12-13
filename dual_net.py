@@ -242,8 +242,6 @@ def model_fn(features, labels, mode, params):
             tf.contrib.quantize.create_eval_graph()
 
     optimizer = tf.train.MomentumOptimizer(learning_rate, params['sgd_momentum'])
-    if params['use_tpu']:
-        optimizer = tpu_optimizer.CrossShardOptimizer(optimizer)
     with tf.control_dependencies(update_ops):
         train_op = optimizer.minimize(combined_cost, global_step=global_step)
 
