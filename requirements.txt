@@ -9,5 +9,5 @@ pylint
 sgf==0.5
 six
 tqdm>=4.17
-
+gsutil
 oauth2client==4.1
