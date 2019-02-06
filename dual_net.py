@@ -32,6 +32,7 @@ import features as features_lib
 import go
 import symmetries
 
+#test push julien
 flags.DEFINE_integer('train_batch_size', 256,
                      'Batch size to use for train/eval evaluation. For GPU '
                      'this is batch size as expected. If \"use_tpu\" is set,'
