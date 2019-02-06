@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" autoUpload="Always" serverName="mleguillou@localhost:6000">
+  <component name="PublishConfigData" autoUpload="Always">
     <serverData>
-      <paths name="mleguillou@localhost:6000">
+      <paths name="gt-1.luminy.univ-amu.fr">
         <serverdata>
           <mappings>
-            <mapping deploy="/ECM_minigo" local="$PROJECT_DIR$" web="/ECM_minigo" />
+            <mapping deploy="/ECM_minigo" local="$PROJECT_DIR$" web="/" />
           </mappings>
         </serverdata>
       </paths>
