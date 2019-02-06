@@ -23,7 +23,7 @@ import os
 
 from absl import app, flags
 import dual_net
-import utils #adrien git test
+import utils #adrien git test 2
 
 flags.DEFINE_string('export_path', None,
                     'Where to export the model after training.')
