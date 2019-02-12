@@ -273,7 +273,7 @@ class MCTSNode(object):
         node = self
         for node in self.most_visited_path_nodes():
             output.append("%s (%d) ==> " % (
-                coords.to_kgs(coords.from_flat(node.fmove)), node.N))
+                coords.to_gtp(coords.from_flat(node.fmove)), node.N))
 
         output.append("Q: {:.5f}\n".format(node.Q))
         return ''.join(output)
@@ -284,7 +284,7 @@ class MCTSNode(object):
         for node in self.most_visited_path_nodes():
             if max(node.child_N) <= 1:
                 break
-            output.append(coords.to_kgs(coords.from_flat(node.fmove)))
+            output.append(coords.to_gtp(coords.from_flat(node.fmove)))
         return ' '.join(output)
 
     def describe(self):
@@ -306,7 +306,7 @@ class MCTSNode(object):
             if self.child_N[key] == 0:
                 break
             output.append("\n{!s:4} : {: .3f} {: .3f} {:.3f} {:.3f} {:.3f} {:5d} {:.4f} {: .5f} {: .2f}".format(
-                coords.to_kgs(coords.from_flat(key)),
+                coords.to_gtp(coords.from_flat(key)),
                 self.child_action_score[key],
                 self.child_Q[key],
                 self.child_U[key],

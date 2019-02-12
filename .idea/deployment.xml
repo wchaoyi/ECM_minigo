@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" autoUpload="Always">
+  <component name="PublishConfigData" autoUpload="Always" serverName="gt-1.luminy.univ-amu.fr">
     <serverData>
       <paths name="gt-1.luminy.univ-amu.fr">
         <serverdata>
           <mappings>
-            <mapping deploy="/ECM_minigo" local="$PROJECT_DIR$" web="/" />
+            <mapping deploy="/tmp/pycharm_project_401" local="$PROJECT_DIR$" />
           </mappings>
         </serverdata>
       </paths>
