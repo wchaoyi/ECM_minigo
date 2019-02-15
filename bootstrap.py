@@ -22,11 +22,13 @@ Usage:
 import os
 
 from absl import app, flags
-import dual_net
-import utils #adrien git test 2
+from policy_value_net import PolicyValueNet
+import utils
 
 flags.DEFINE_string('export_path', None,
                     'Where to export the model after training.')
+flags.DEFINE_string('work_dir', None, 'The working directory')
+flags.DEFINE_integer('board_size', 9, 'board size')
 
 flags.DEFINE_bool('create_bootstrap', True,
                   'Whether to create a bootstrap model before exporting')
@@ -36,12 +38,12 @@ flags.declare_key_flag('work_dir')
 FLAGS = flags.FLAGS
 
 
-def main(unused_argv):
+def main(*argv):
     """Bootstrap random weights."""
     utils.ensure_dir_exists(os.path.dirname(FLAGS.export_path))
     if FLAGS.create_bootstrap:
-        dual_net.bootstrap()
-    dual_net.export_model(FLAGS.export_path)
+        net=PolicyValueNet(FLAGS.board_size, FLAGS.board_size)
+    net.save_model(FLAGS.export_path+'model0')
 
 
 if __name__ == '__main__':
