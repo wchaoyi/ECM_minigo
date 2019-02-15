@@ -382,8 +382,8 @@ class My_batchn(nn.Module):
         return x
 
 
-class My_conv2d(nn.Module,conv_width,kernel_size):
-    def __init__(self):
+class My_conv2d(nn.Module):
+    def __init__(self, conv_width, kernel_size):
         super(My_conv2d, self).__init__()
         self.conv = torch.nn.Conv2d(1, conv_width, kernel_size, stride=1, padding=2)
 
@@ -393,7 +393,7 @@ class My_conv2d(nn.Module,conv_width,kernel_size):
 
 
 class My_res_layer(nn.Module):
-    def __init__(self):
+    def __init__(self, num_features):
         super(My_res_layer, self).__init__()
         self.layer1 = nn.Sequential(
             nn.BatchNorm2d(num_features, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True),
@@ -435,7 +435,7 @@ def model_inference_fn(features, training, params):
         go.N * go.N + 1)
 
     #FAIRE UNE CLASSE LOGITS QUI CONTIENT UNE COUCHE DENSE
-    #logits_dense_net = logit()
+    logits_dense_net = logit()
 
     policy_output = F.softmax(logits_dense_net(policy_conv))
 
