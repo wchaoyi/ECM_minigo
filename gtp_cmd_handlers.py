@@ -68,7 +68,7 @@ class BasicCmdHandler(object):
             # let's assume this never happens for now.
             # self._accomodate_out_of_turn(translate_gtp_color(arg0))
             move = arg1
-        return self._player.play_move(coords.from_kgs(move))
+        return self._player.play_move(coords.from_gtp(move))
 
     def cmd_genmove(self, color=None):
         if color is not None:
@@ -91,7 +91,7 @@ class BasicCmdHandler(object):
         if self._player.get_root().is_done():
             self._player.set_result(self._player.get_position().result(),
                                     was_resign=False)
-        return coords.to_kgs(move)
+        return coords.to_gtp(move)
 
     def cmd_undo(self):
         raise NotImplementedError()
@@ -203,7 +203,7 @@ class GoGuiCmdHandler(object):
 
     def _heatmap(self, sort_order, node, prop):
         return "\n".join(["{!s:6} {}".format(
-            coords.to_kgs(coords.from_flat(key)),
+            coords.to_gtp(coords.from_flat(key)),
             node.__dict__.get(prop)[key])
             for key in sort_order if node.child_N[key] > 0][: 20])
 
@@ -262,7 +262,7 @@ class MiniguiBasicCmdHandler(BasicCmdHandler):
                     board.append(".")
         msg["board"] = "".join(board)
         if position.recent:
-            msg["lastMove"] = coords.to_kgs(position.recent[-1].move)
+            msg["lastMove"] = coords.to_gtp(position.recent[-1].move)
         else:
             msg["lastMove"] = None
         msg["toPlay"] = "B" if position.to_play == 1 else "W"
@@ -324,7 +324,7 @@ class MiniguiBasicCmdHandler(BasicCmdHandler):
             while leaf != root:
                 path.append(leaf.fmove)
                 leaf = leaf.parent
-            msg["search"] = [coords.to_kgs(coords.from_flat(m))
+            msg["search"] = [coords.to_gtp(coords.from_flat(m))
                              for m in reversed(path)]
         else:
             msg["search"] = []
@@ -335,7 +335,7 @@ class MiniguiBasicCmdHandler(BasicCmdHandler):
         msg["n"] = [int(n) for n in root.child_N]
 
         nodes = root.most_visited_path_nodes()
-        pv = [coords.to_kgs(coords.from_flat(m.fmove)) for m in nodes]
+        pv = [coords.to_gtp(coords.from_flat(m.fmove)) for m in nodes]
         if pv != self._last_pv:
             msg["pv"] = pv
             self._last_pv = pv

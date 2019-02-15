@@ -45,7 +45,7 @@ def _preprocess(msg):
     # Control characters are defined in section 2.2 as dec 0-31 (oct 0-037)
     # and 127 (oct 177). We want to remove them all except \t (oct 011) and
     # \n (oct 12).
-    msg = msg.lower() #no the good solution according to github forum
+    #msg = msg.lower() #no the good solution according to github forum
     msg = re.sub("r[\000-\010\013-\037\177]", "", msg)
     msg = msg.split("#", 1)[0]
     msg = msg.replace("\t", " ")
