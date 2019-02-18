@@ -11,22 +11,17 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-'''Python implementation of selfplay worker.
 
-This worker is used to set up many parallel selfplay instances.'''
 
 
 import random
 import os
 import socket
 import time
-
+import numpy as np
 from absl import app, flags
-from tensorflow import gfile
-
+from policy_value_net import PolicyValueNet
 import coords
-import dual_net
-import preprocessing
 from strategies import MCTSPlayer
 import utils
 
@@ -65,7 +60,8 @@ def play(network):
 
     # Must run this once at the start to expand the root node.
     first_node = player.root.select_leaf()
-    prob, val = network.run(first_node.position)
+    print(first_node.position.board)
+    prob, val = network.policy_value_fn(first_node.position.board)
     first_node.incorporate_results(prob, val, first_node)
 
     while True:
@@ -119,7 +115,7 @@ def run_game(load_file, selfplay_dir=None, holdout_dir=None,
         utils.ensure_dir_exists(holdout_dir)
 
     with utils.logged_timer("Loading weights from %s ... " % load_file):
-        network = dual_net.DualNetwork(load_file)
+        network = PolicyValueNet(9,9, model_file=load_file)
 
     with utils.logged_timer("Playing game"):
         player = play(network)
@@ -127,9 +123,9 @@ def run_game(load_file, selfplay_dir=None, holdout_dir=None,
     output_name = '{}-{}'.format(int(time.time()), socket.gethostname())
     game_data = player.extract_data()
     if sgf_dir is not None:
-        with gfile.GFile(os.path.join(minimal_sgf_dir, '{}.sgf'.format(output_name)), 'w') as f:
+        with open(os.path.join(minimal_sgf_dir, '{}.sgf'.format(output_name)), 'w') as f:
             f.write(player.to_sgf(use_comments=False))
-        with gfile.GFile(os.path.join(full_sgf_dir, '{}.sgf'.format(output_name)), 'w') as f:
+        with open(os.path.join(full_sgf_dir, '{}.sgf'.format(output_name)), 'w') as f:
             f.write(player.to_sgf())
 
     tf_examples = preprocessing.make_dataset_from_selfplay(game_data)

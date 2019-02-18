@@ -10,6 +10,7 @@ import torch.optim as optim
 import torch.nn.functional as F
 from torch.autograd import Variable
 import numpy as np
+import go
 
 
 def set_learning_rate(optimizer, lr):
@@ -97,16 +98,15 @@ class PolicyValueNet():
         output: a list of (action, probability) tuples for each available
         action and the score of the board state
         """
-        legal_positions = board.availables
-        current_state = np.ascontiguousarray(board.current_state().reshape(
-                -1, 4, self.board_width, self.board_height))
+        legal_positions = go.Position(board).all_legal_moves()
+        current_state = board
         if self.use_gpu:
             log_act_probs, value = self.policy_value_net(
-                    Variable(torch.from_numpy(current_state)).cuda().float())
+                    Variable(torch.tensor(current_state.astype('uint8'))).cuda().float())
             act_probs = np.exp(log_act_probs.data.cpu().numpy().flatten())
         else:
             log_act_probs, value = self.policy_value_net(
-                    Variable(torch.from_numpy(current_state)).float())
+                    Variable(torch.tensor(current_state.astype('uint8'))).float())
             act_probs = np.exp(log_act_probs.data.numpy().flatten())
         act_probs = zip(legal_positions, act_probs[legal_positions])
         value = value.data[0][0]

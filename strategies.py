@@ -37,7 +37,7 @@ flags.DEFINE_float('resign_threshold', -0.9,
 flags.register_validator('resign_threshold', lambda x: -1 <= x < 0)
 
 flags.DEFINE_integer('num_readouts', 800 if go.N == 19 else 200,
-                     'Number of searches to add to the MCTS search tree before playing a move.')
+                    'Number of searches to add to the MCTS search tree before playing a move.')
 flags.register_validator('num_readouts', lambda x: x > 0)
 
 flags.DEFINE_integer('parallel_readouts', 8,
@@ -46,7 +46,10 @@ flags.DEFINE_integer('parallel_readouts', 8,
 
 # this should be called "verbosity" but flag name conflicts with absl.logging.
 # Should fix this by overhauling this logging system with appropriate logging.info/debug.
-flags.DEFINE_integer('verbose', 1, 'How much debug info to print.')
+flags.DEFINE_integer('verbose', 3, 'How much debug info to print.')
+
+flags.declare_key_flag('verbose')
+flags.declare_key_flag('num_readouts')
 
 FLAGS = flags.FLAGS
 
@@ -205,8 +208,7 @@ class MCTSPlayer(MCTSPlayerInterface):
             leaf.add_virtual_loss(up_to=self.root)
             leaves.append(leaf)
         if leaves:
-            move_probs, values = self.network.run_many(
-                [leaf.position for leaf in leaves])
+            move_probs, values = self.network.policy_value_fn(leaves)
             for leaf, move_prob, value in zip(leaves, move_probs, values):
                 leaf.revert_virtual_loss(up_to=self.root)
                 leaf.incorporate_results(move_prob, value, up_to=self.root)

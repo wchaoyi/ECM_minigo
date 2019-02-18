@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6e280fe0-8eca-4e90-8ea9-dcd0b53f1e94" name="Default" comment="réseau simple pytorch pour avancer sur le reste">
-      <change beforePath="$PROJECT_DIR$/.idea/deployment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/deployment.xml" afterDir="false" />
+    <list default="true" id="6e280fe0-8eca-4e90-8ea9-dcd0b53f1e94" name="Default" comment="prise d'un réseau existant pour travailler sur train.py">
+      <change afterPath="$PROJECT_DIR$/mcts_alphaZero.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mcts_pure.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bootstrap.py" beforeDir="false" afterPath="$PROJECT_DIR$/bootstrap.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mcts.py" beforeDir="false" afterPath="$PROJECT_DIR$/mcts.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/policy_value_net.py" beforeDir="false" afterPath="$PROJECT_DIR$/policy_value_net.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/selfplay.py" beforeDir="false" afterPath="$PROJECT_DIR$/selfplay.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/strategies.py" beforeDir="false" afterPath="$PROJECT_DIR$/strategies.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/train.py" beforeDir="false" afterPath="$PROJECT_DIR$/train.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -14,18 +18,42 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/ECM_minigo$bootstrap.coverage" NAME="bootstrap Coverage Results" MODIFIED="1550247498822" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/ECM_minigo$train.coverage" NAME="train Coverage Results" MODIFIED="1550507029747" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/ECM_minigo$bootstrap.coverage" NAME="bootstrap Coverage Results" MODIFIED="1550248927995" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/preprocessing.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2482">
+            <state relative-caret-position="374">
               <caret line="25" selection-start-line="25" selection-end-line="25" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/train.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="17">
+              <caret line="10" column="25" selection-start-line="10" selection-start-column="25" selection-end-line="10" selection-end-column="25" />
             </state>
           </provider>
         </entry>
@@ -33,8 +61,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/strategies.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3774">
-              <caret line="255" column="35" selection-start-line="255" selection-start-column="35" selection-end-line="255" selection-end-column="35" />
+            <state relative-caret-position="1712">
+              <caret line="199" column="40" selection-start-line="199" selection-start-column="29" selection-end-line="199" selection-end-column="40" />
               <folding>
                 <element signature="e#576#585#0" expanded="true" />
               </folding>
@@ -43,34 +71,24 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/train.py">
+        <entry file="file://$PROJECT_DIR$/selfplay.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="129">
-              <caret line="58" selection-start-line="58" selection-end-line="58" />
+            <state relative-caret-position="270">
+              <caret line="62" column="35" lean-forward="true" selection-start-line="62" selection-start-column="35" selection-end-line="62" selection-end-column="35" />
               <folding>
-                <element signature="e#671#685#0" expanded="true" />
+                <element signature="e#690#703#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/README.md">
-          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-            <state split_layout="SPLIT">
-              <first_editor relative-caret-position="-357" />
-              <second_editor />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/bootstrap.py">
+        <entry file="file://$PROJECT_DIR$/go.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="414">
-              <caret line="45" column="44" selection-start-line="45" selection-start-column="44" selection-end-line="45" selection-end-column="44" />
+            <state relative-caret-position="269">
+              <caret line="303" column="36" lean-forward="true" selection-start-line="303" selection-start-column="36" selection-end-line="303" selection-end-column="36" />
               <folding>
-                <element signature="e#746#755#0" expanded="true" />
+                <element signature="e#828#862#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -79,17 +97,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dual_net.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="446" column="11" selection-start-line="446" selection-start-column="4" selection-end-line="446" selection-end-column="11" />
+            <state relative-caret-position="1411">
+              <caret line="164" column="37" selection-start-line="164" selection-start-column="29" selection-end-line="164" selection-end-column="37" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/policy_value_net.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="74" column="35" selection-start-line="74" selection-start-column="31" selection-end-line="74" selection-end-column="35" />
+            <state relative-caret-position="187">
+              <caret line="29" column="30" selection-start-line="29" selection-start-column="30" selection-end-line="29" selection-end-column="30" />
               <folding>
                 <element signature="e#116#128#0" expanded="true" />
               </folding>
@@ -121,6 +139,16 @@
       <find>bootstrap</find>
       <find>bootstr</find>
       <find>load</find>
+      <find>MCTS_Pure</find>
+      <find>self.board</find>
+      <find>run_many</find>
+      <find>self.game</find>
+      <find>self.network</find>
+      <find>root</find>
+      <find>board</find>
+      <find>select_leaf</find>
+      <find>selfplay</find>
+      <find>dtype</find>
     </findStrings>
     <replaceStrings>
       <replace>coords.to_gtp</replace>
@@ -131,7 +159,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="pytorch" />
       </map>
     </option>
   </component>
@@ -141,12 +169,17 @@
         <option value="$PROJECT_DIR$/dual_net.py" />
         <option value="$PROJECT_DIR$/coords.py" />
         <option value="$PROJECT_DIR$/gtp_engine.py" />
-        <option value="$PROJECT_DIR$/go.py" />
         <option value="$PROJECT_DIR$/gtp_cmd_handlers.py" />
         <option value="$PROJECT_DIR$/dual_net_pytorch.py" />
-        <option value="$PROJECT_DIR$/policy_value_net.py" />
-        <option value="$PROJECT_DIR$/train.py" />
         <option value="$PROJECT_DIR$/bootstrap.py" />
+        <option value="$PROJECT_DIR$/mcts.py" />
+        <option value="$PROJECT_DIR$/mcts_alphaZero.py" />
+        <option value="$PROJECT_DIR$/mcts_pure.py" />
+        <option value="$PROJECT_DIR$/strategies.py" />
+        <option value="$PROJECT_DIR$/train.py" />
+        <option value="$PROJECT_DIR$/go.py" />
+        <option value="$PROJECT_DIR$/policy_value_net.py" />
+        <option value="$PROJECT_DIR$/selfplay.py" />
       </list>
     </option>
   </component>
@@ -197,7 +230,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python.train">
     <configuration name="bootstrap" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="ECM_minigo" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -212,7 +245,7 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/bootstrap.py" />
-      <option name="PARAMETERS" value="--work_dir=$HOME --board_size=9 --export_path=models/" />
+      <option name="PARAMETERS" value="--board_size=9 --export_path=models/ --model_name=model0" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -220,6 +253,32 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="train" type="PythonConfigurationType" factoryName="Python">
+      <module name="ECM_minigo" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/train.py" />
+      <option name="PARAMETERS" value="--model_path=models/model0 --use_gpu=True" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Python.train" />
+      <item itemvalue="Python.bootstrap" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Python.bootstrap" />
@@ -241,7 +300,8 @@
       <workItem from="1550072401267" duration="63000" />
       <workItem from="1550221581405" duration="480000" />
       <workItem from="1550225934688" duration="1500000" />
-      <workItem from="1550233981412" duration="11139000" />
+      <workItem from="1550233981412" duration="12560000" />
+      <workItem from="1550481516618" duration="22174000" />
     </task>
     <task id="LOCAL-00001" summary="Reprise de la solution de tensorflow pour l'erreur de upper/lower case">
       <created>1549971661713</created>
@@ -257,22 +317,63 @@
       <option name="project" value="LOCAL" />
       <updated>1550241964467</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="prise d'un réseau existant pour travailler sur train.py">
+      <created>1550248788200</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1550248788200</updated>
+    </task>
+    <task id="LOCAL-00004" summary="prise d'un réseau existant pour travailler sur train.py">
+      <created>1550248950320</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1550248950320</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="17799000" />
+    <option name="totallyTimeSpent" value="41394000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="30" width="1920" height="1050" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1917735" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19391026" />
       <window_info id="Remote Host" order="1" sideWeight="0.49905482" weight="0.2008547" />
       <window_info id="Structure" order="2" weight="0.25" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32893288" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.25852585" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.3839384" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.49946582" weight="0.32893288" />
+      <window_info anchor="bottom" id="Terminal" order="8" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5005342" side_tool="true" weight="0.32893288" />
+      <window_info anchor="bottom" id="Python Console" order="10" weight="0.32893288" />
+      <window_info anchor="bottom" id="Docker" order="11" show_stripe_button="false" />
+      <window_info anchor="bottom" id="File Transfer" order="12" weight="0.16061606" />
+      <window_info anchor="bottom" id="Database Changes" order="13" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" x="0" y="0" width="165" height="624" id="Documentation" order="3" sideWeight="0.50165015" side_tool="true" visible="true" weight="0.2847222" />
+      <window_info anchor="right" id="Database" order="4" sideWeight="0.49834985" weight="0.32959402" />
+      <window_info anchor="right" id="SciView" order="5" weight="0.32959402" />
+    </layout>
+    <layout-to-restore>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19391026" />
+      <window_info id="Remote Host" order="1" sideWeight="0.49905482" weight="0.2008547" />
+      <window_info id="Structure" order="2" weight="0.25" />
+      <window_info id="Favorites" order="3" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32893288" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.25852585" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -282,15 +383,15 @@
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5005342" side_tool="true" weight="0.32893288" />
       <window_info anchor="bottom" id="Python Console" order="10" />
       <window_info anchor="bottom" id="Docker" order="11" show_stripe_button="false" />
-      <window_info anchor="bottom" id="File Transfer" order="12" weight="0.16061606" />
+      <window_info anchor="bottom" id="File Transfer" order="12" visible="true" weight="0.16061606" />
       <window_info anchor="bottom" id="Database Changes" order="13" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" x="0" y="0" width="165" height="624" id="Documentation" order="3" sideWeight="0.50094515" side_tool="true" visible="true" weight="0.32959402" />
+      <window_info anchor="right" x="0" y="0" width="165" height="624" id="Documentation" order="3" sideWeight="0.50094515" side_tool="true" visible="true" weight="0.24732906" />
       <window_info anchor="right" id="Database" order="4" />
       <window_info anchor="right" id="SciView" order="5" />
-    </layout>
+    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -298,7 +399,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Reprise de la solution de tensorflow pour l'erreur de upper/lower case" />
     <MESSAGE value="réseau simple pytorch pour avancer sur le reste" />
-    <option name="LAST_COMMIT_MESSAGE" value="réseau simple pytorch pour avancer sur le reste" />
+    <MESSAGE value="prise d'un réseau existant pour travailler sur train.py" />
+    <option name="LAST_COMMIT_MESSAGE" value="prise d'un réseau existant pour travailler sur train.py" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/coords.py">
@@ -317,23 +419,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/__init__.py">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/go.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3068">
-          <caret line="462" column="40" selection-start-line="462" selection-start-column="40" selection-end-line="462" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mcts.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-4363">
-          <caret line="20" selection-start-line="20" selection-end-line="20" />
-          <folding>
-            <element signature="e#716#734#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/gtp.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -362,26 +447,6 @@
     <entry file="file://$USER_HOME$/.PyCharm2018.3/system/remote_sources/-628395629/1606616944/torch/nn/functional.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/dual_net_pytorch.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1731">
-          <caret line="442" column="27" selection-start-line="442" selection-start-column="27" selection-end-line="442" selection-end-column="27" />
-          <folding>
-            <element signature="e#0#22#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/strategies.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3774">
-          <caret line="255" column="35" selection-start-line="255" selection-start-column="35" selection-end-line="255" selection-end-column="35" />
-          <folding>
-            <element signature="e#576#585#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/sgf_wrapper.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-752">
@@ -395,51 +460,121 @@
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="-357" />
+          <first_editor />
           <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dual_net.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="446" column="11" selection-start-line="446" selection-start-column="4" selection-end-line="446" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/preprocessing.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2482">
-          <caret line="25" selection-start-line="25" selection-end-line="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/policy_value_net.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="74" column="35" selection-start-line="74" selection-start-column="31" selection-end-line="74" selection-end-column="35" />
-          <folding>
-            <element signature="e#116#128#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/train.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="129">
-          <caret line="58" selection-start-line="58" selection-end-line="58" />
-          <folding>
-            <element signature="e#671#685#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/bootstrap.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
-          <caret line="45" column="44" selection-start-line="45" selection-start-column="44" selection-end-line="45" selection-end-column="44" />
+        <state relative-caret-position="734">
+          <caret line="51" column="17" selection-start-line="51" selection-start-column="17" selection-end-line="51" selection-end-column="17" />
           <folding>
             <element signature="e#746#755#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mcts_alphaZero.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="819">
+          <caret line="214" column="8" selection-start-line="214" selection-start-column="8" selection-end-line="214" selection-end-column="8" />
+          <folding>
+            <element signature="e#165#183#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mcts_pure.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="819">
+          <caret line="202" column="8" selection-start-line="202" selection-start-column="8" selection-end-line="202" selection-end-column="8" />
+          <folding>
+            <element signature="e#91#109#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mcts.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="71">
+          <caret line="279" lean-forward="true" selection-start-line="279" selection-end-line="279" />
+          <folding>
+            <element signature="e#716#734#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dual_net_pytorch.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6762">
+          <caret line="442" column="27" selection-start-line="442" selection-start-column="27" selection-end-line="442" selection-end-column="27" />
+          <folding>
+            <element signature="e#0#22#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/preprocessing.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="25" selection-start-line="25" selection-end-line="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/strategies.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1712">
+          <caret line="199" column="40" selection-start-line="199" selection-start-column="29" selection-end-line="199" selection-end-column="40" />
+          <folding>
+            <element signature="e#576#585#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/go.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="269">
+          <caret line="303" column="36" lean-forward="true" selection-start-line="303" selection-start-column="36" selection-end-line="303" selection-end-column="36" />
+          <folding>
+            <element signature="e#828#862#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/selfplay.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="62" column="35" lean-forward="true" selection-start-line="62" selection-start-column="35" selection-end-line="62" selection-end-column="35" />
+          <folding>
+            <element signature="e#690#703#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dual_net.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1411">
+          <caret line="164" column="37" selection-start-line="164" selection-start-column="29" selection-end-line="164" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/train.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="10" column="25" selection-start-line="10" selection-start-column="25" selection-end-line="10" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/policy_value_net.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="29" column="30" selection-start-line="29" selection-start-column="30" selection-end-line="29" selection-end-column="30" />
+          <folding>
+            <element signature="e#116#128#0" expanded="true" />
           </folding>
         </state>
       </provider>
