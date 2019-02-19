@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6e280fe0-8eca-4e90-8ea9-dcd0b53f1e94" name="Default" comment="prise d'un réseau existant pour travailler sur train.py">
-      <change afterPath="$PROJECT_DIR$/mcts_alphaZero.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mcts_pure.py" afterDir="false" />
+    <list default="true" id="6e280fe0-8eca-4e90-8ea9-dcd0b53f1e94" name="Default" comment="branchements pytorch-squelette TF à débugger">
+      <change beforePath="$PROJECT_DIR$/.idea/ECM_minigo.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ECM_minigo.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/deployment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/deployment.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features.py" beforeDir="false" afterPath="$PROJECT_DIR$/features.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mcts.py" beforeDir="false" afterPath="$PROJECT_DIR$/mcts.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/policy_value_net.py" beforeDir="false" afterPath="$PROJECT_DIR$/policy_value_net.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/selfplay.py" beforeDir="false" afterPath="$PROJECT_DIR$/selfplay.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/strategies.py" beforeDir="false" afterPath="$PROJECT_DIR$/strategies.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/train.py" beforeDir="false" afterPath="$PROJECT_DIR$/train.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -18,8 +18,8 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/ECM_minigo$train.coverage" NAME="train Coverage Results" MODIFIED="1550507029747" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/ECM_minigo$bootstrap.coverage" NAME="bootstrap Coverage Results" MODIFIED="1550248927995" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/ECM_minigo$train.coverage" NAME="train Coverage Results" MODIFIED="1550588310033" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/ECM_minigo$bootstrap.coverage" NAME="bootstrap Coverage Results" MODIFIED="1550585429498" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
@@ -40,19 +40,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/preprocessing.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="25" selection-start-line="25" selection-end-line="25" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/train.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
+            <state relative-caret-position="-2692">
               <caret line="10" column="25" selection-start-line="10" selection-start-column="25" selection-end-line="10" selection-end-column="25" />
             </state>
           </provider>
@@ -61,8 +52,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/strategies.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1712">
-              <caret line="199" column="40" selection-start-line="199" selection-start-column="29" selection-end-line="199" selection-end-column="40" />
+            <state relative-caret-position="321">
+              <caret line="207" selection-start-line="207" selection-end-line="207" />
               <folding>
                 <element signature="e#576#585#0" expanded="true" />
               </folding>
@@ -73,10 +64,10 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/selfplay.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="62" column="35" lean-forward="true" selection-start-line="62" selection-start-column="35" selection-end-line="62" selection-end-column="35" />
+            <state relative-caret-position="-1108">
+              <caret line="76" selection-start-line="76" selection-end-line="76" />
               <folding>
-                <element signature="e#690#703#0" expanded="true" />
+                <element signature="e#578#591#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -85,8 +76,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/go.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="269">
-              <caret line="303" column="36" lean-forward="true" selection-start-line="303" selection-start-column="36" selection-end-line="303" selection-end-column="36" />
+            <state relative-caret-position="-172">
+              <caret line="383" column="21" selection-start-line="383" selection-start-column="16" selection-end-line="383" selection-end-column="21" />
               <folding>
                 <element signature="e#828#862#0" expanded="true" />
               </folding>
@@ -95,22 +86,34 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dual_net.py">
+        <entry file="file://$PROJECT_DIR$/policy_value_net.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1411">
-              <caret line="164" column="37" selection-start-line="164" selection-start-column="29" selection-end-line="164" selection-end-column="37" />
+            <state relative-caret-position="134">
+              <caret line="35" column="61" selection-start-line="35" selection-start-column="61" selection-end-line="35" selection-end-column="61" />
+              <folding>
+                <element signature="e#116#128#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/policy_value_net.py">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mcts.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="29" column="30" selection-start-line="29" selection-start-column="30" selection-end-line="29" selection-end-column="30" />
+            <state relative-caret-position="157">
+              <caret line="126" column="38" selection-start-line="126" selection-start-column="33" selection-end-line="126" selection-end-column="38" />
               <folding>
-                <element signature="e#116#128#0" expanded="true" />
+                <element signature="e#716#734#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/.PyCharm2018.3/system/remote_sources/-144720302/1606616944/torch/tensor.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="177">
+              <caret line="366" selection-start-line="366" selection-end-line="366" />
             </state>
           </provider>
         </entry>
@@ -126,33 +129,41 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>lower</find>
-      <find>to_kgs</find>
-      <find>coords.to_kgs</find>
-      <find>coords.from_kgs</find>
-      <find>kgs</find>
-      <find>import tensorflow as tf</find>
-      <find>import mcts</find>
-      <find>preprocessing</find>
-      <find>dense</find>
-      <find>get_esti</find>
-      <find>bootstrap</find>
-      <find>bootstr</find>
-      <find>load</find>
-      <find>MCTS_Pure</find>
-      <find>self.board</find>
-      <find>run_many</find>
-      <find>self.game</find>
       <find>self.network</find>
       <find>root</find>
       <find>board</find>
       <find>select_leaf</find>
       <find>selfplay</find>
       <find>dtype</find>
+      <find>features_lib.NEW_FEATURES_PLANES</find>
+      <find>features</find>
+      <find>self.inference_input</find>
+      <find>get_in</find>
+      <find>board_del</find>
+      <find>class Po</find>
+      <find>Position(</find>
+      <find>board_deltas</find>
+      <find>po</find>
+      <find>play(</find>
+      <find>policy</find>
+      <find>run</find>
+      <find>incorporate</find>
+      <find>go.N</find>
+      <find>go.N + 1</find>
+      <find>policy_conv_width</find>
+      <find>pi</find>
+      <find>legal</find>
+      <find>child_prior</find>
+      <find>child_N</find>
+      <find>np.</find>
+      <find>value</find>
+      <find>fmove</find>
+      <find>policy_value_fn</find>
     </findStrings>
     <replaceStrings>
       <replace>coords.to_gtp</replace>
       <replace>coords.from_gtp</replace>
+      <replace>torch.</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -172,14 +183,15 @@
         <option value="$PROJECT_DIR$/gtp_cmd_handlers.py" />
         <option value="$PROJECT_DIR$/dual_net_pytorch.py" />
         <option value="$PROJECT_DIR$/bootstrap.py" />
-        <option value="$PROJECT_DIR$/mcts.py" />
         <option value="$PROJECT_DIR$/mcts_alphaZero.py" />
         <option value="$PROJECT_DIR$/mcts_pure.py" />
         <option value="$PROJECT_DIR$/strategies.py" />
         <option value="$PROJECT_DIR$/train.py" />
         <option value="$PROJECT_DIR$/go.py" />
-        <option value="$PROJECT_DIR$/policy_value_net.py" />
+        <option value="$PROJECT_DIR$/features.py" />
         <option value="$PROJECT_DIR$/selfplay.py" />
+        <option value="$PROJECT_DIR$/policy_value_net.py" />
+        <option value="$PROJECT_DIR$/mcts.py" />
       </list>
     </option>
   </component>
@@ -216,7 +228,7 @@
     <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="web.server" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -301,7 +313,8 @@
       <workItem from="1550221581405" duration="480000" />
       <workItem from="1550225934688" duration="1500000" />
       <workItem from="1550233981412" duration="12560000" />
-      <workItem from="1550481516618" duration="22174000" />
+      <workItem from="1550481516618" duration="23692000" />
+      <workItem from="1550569880556" duration="15860000" />
     </task>
     <task id="LOCAL-00001" summary="Reprise de la solution de tensorflow pour l'erreur de upper/lower case">
       <created>1549971661713</created>
@@ -331,30 +344,37 @@
       <option name="project" value="LOCAL" />
       <updated>1550248950320</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="branchements pytorch-squelette TF à débugger">
+      <created>1550507301459</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1550507301459</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="41394000" />
+    <option name="totallyTimeSpent" value="58772000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="30" width="1920" height="1050" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19391026" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19604701" />
       <window_info id="Remote Host" order="1" sideWeight="0.49905482" weight="0.2008547" />
       <window_info id="Structure" order="2" weight="0.25" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32893288" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.3839384" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49946582" visible="true" weight="0.3839384" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.49946582" weight="0.32893288" />
       <window_info anchor="bottom" id="Terminal" order="8" />
-      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5005342" side_tool="true" weight="0.32893288" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5005342" side_tool="true" weight="0.3839384" />
       <window_info anchor="bottom" id="Python Console" order="10" weight="0.32893288" />
       <window_info anchor="bottom" id="Docker" order="11" show_stripe_button="false" />
       <window_info anchor="bottom" id="File Transfer" order="12" weight="0.16061606" />
@@ -362,7 +382,7 @@
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" x="0" y="0" width="165" height="624" id="Documentation" order="3" sideWeight="0.50165015" side_tool="true" visible="true" weight="0.2847222" />
+      <window_info anchor="right" x="0" y="0" width="165" height="624" id="Documentation" order="3" sideWeight="0.50165015" side_tool="true" visible="true" weight="0.2857906" />
       <window_info anchor="right" id="Database" order="4" sideWeight="0.49834985" weight="0.32959402" />
       <window_info anchor="right" id="SciView" order="5" weight="0.32959402" />
     </layout>
@@ -400,7 +420,8 @@
     <MESSAGE value="Reprise de la solution de tensorflow pour l'erreur de upper/lower case" />
     <MESSAGE value="réseau simple pytorch pour avancer sur le reste" />
     <MESSAGE value="prise d'un réseau existant pour travailler sur train.py" />
-    <option name="LAST_COMMIT_MESSAGE" value="prise d'un réseau existant pour travailler sur train.py" />
+    <MESSAGE value="branchements pytorch-squelette TF à débugger" />
+    <option name="LAST_COMMIT_MESSAGE" value="branchements pytorch-squelette TF à débugger" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/coords.py">
@@ -475,32 +496,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mcts_alphaZero.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="819">
-          <caret line="214" column="8" selection-start-line="214" selection-start-column="8" selection-end-line="214" selection-end-column="8" />
-          <folding>
-            <element signature="e#165#183#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mcts_pure.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="819">
           <caret line="202" column="8" selection-start-line="202" selection-start-column="8" selection-end-line="202" selection-end-column="8" />
           <folding>
             <element signature="e#91#109#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mcts.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="71">
-          <caret line="279" lean-forward="true" selection-start-line="279" selection-end-line="279" />
-          <folding>
-            <element signature="e#716#734#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -520,62 +521,109 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/preprocessing.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
+        <state relative-caret-position="425">
           <caret line="25" selection-start-line="25" selection-end-line="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/strategies.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1712">
-          <caret line="199" column="40" selection-start-line="199" selection-start-column="29" selection-end-line="199" selection-end-column="40" />
-          <folding>
-            <element signature="e#576#585#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/go.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="269">
-          <caret line="303" column="36" lean-forward="true" selection-start-line="303" selection-start-column="36" selection-end-line="303" selection-end-column="36" />
+        <state relative-caret-position="-172">
+          <caret line="383" column="21" selection-start-line="383" selection-start-column="16" selection-end-line="383" selection-end-column="21" />
           <folding>
             <element signature="e#828#862#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/selfplay.py">
+    <entry file="file://$PROJECT_DIR$/features.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="62" column="35" lean-forward="true" selection-start-line="62" selection-start-column="35" selection-end-line="62" selection-end-column="35" />
+        <state relative-caret-position="2397">
+          <caret line="150" column="77" selection-start-line="150" selection-start-column="77" selection-end-line="150" selection-end-column="77" />
           <folding>
-            <element signature="e#690#703#0" expanded="true" />
+            <element signature="e#1075#1093#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/policy_value_net.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="134">
+          <caret line="35" column="61" selection-start-line="35" selection-start-column="61" selection-end-line="35" selection-end-column="61" />
+          <folding>
+            <element signature="e#116#128#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/dual_net.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1411">
-          <caret line="164" column="37" selection-start-line="164" selection-start-column="29" selection-end-line="164" selection-end-column="37" />
+        <state relative-caret-position="463">
+          <caret line="188" column="16" selection-start-line="188" selection-start-column="14" selection-end-line="188" selection-end-column="16" />
+          <folding>
+            <element signature="e#771#793#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.PyCharm2018.3/system/python_stubs/-144720302/builtins.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="177">
+          <caret line="3146" column="8" selection-start-line="3146" selection-start-column="8" selection-end-line="3146" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.PyCharm2018.3/system/remote_sources/-144720302/1606616944/torch/tensor.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="177">
+          <caret line="366" selection-start-line="366" selection-end-line="366" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mcts_alphaZero.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3587">
+          <caret line="214" column="8" selection-start-line="214" selection-start-column="8" selection-end-line="214" selection-end-column="8" />
+          <folding>
+            <element signature="e#165#183#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/strategies.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="321">
+          <caret line="207" selection-start-line="207" selection-end-line="207" />
+          <folding>
+            <element signature="e#576#585#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mcts.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="157">
+          <caret line="126" column="38" selection-start-line="126" selection-start-column="33" selection-end-line="126" selection-end-column="38" />
+          <folding>
+            <element signature="e#716#734#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/selfplay.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1108">
+          <caret line="76" selection-start-line="76" selection-end-line="76" />
+          <folding>
+            <element signature="e#578#591#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/train.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
+        <state relative-caret-position="-2692">
           <caret line="10" column="25" selection-start-line="10" selection-start-column="25" selection-end-line="10" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/policy_value_net.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="29" column="30" selection-start-line="29" selection-start-column="30" selection-end-line="29" selection-end-column="30" />
-          <folding>
-            <element signature="e#116#128#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>

@@ -70,15 +70,15 @@ def stone_features(position):
 
     features[::2] = last_eight == position.to_play
     features[1::2] = last_eight == -position.to_play
-    return np.rollaxis(features, 0, 3)
+    return features
 
 
 @planes(1)
 def color_to_play_feature(position):
     if position.to_play == go.BLACK:
-        return np.ones([go.N, go.N, 1], dtype=np.uint8)
+        return np.ones([1, go.N, go.N], dtype=np.uint8)
     else:
-        return np.zeros([go.N, go.N, 1], dtype=np.uint8)
+        return np.zeros([1, go.N, go.N], dtype=np.uint8)
 
 
 @planes(3)
@@ -148,4 +148,4 @@ NEW_FEATURES_PLANES = sum(f.planes for f in NEW_FEATURES)
 
 
 def extract_features(position, features=NEW_FEATURES):
-    return np.concatenate([feature(position) for feature in features], axis=2)
+    return np.concatenate([feature(position) for feature in features], axis=0)

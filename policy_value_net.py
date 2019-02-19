@@ -27,13 +27,13 @@ class Net(nn.Module):
         self.board_width = board_width
         self.board_height = board_height
         # common layers
-        self.conv1 = nn.Conv2d(4, 32, kernel_size=3, padding=1)
+        self.conv1 = nn.Conv2d(17, 32, kernel_size=3, padding=1)
         self.conv2 = nn.Conv2d(32, 64, kernel_size=3, padding=1)
         self.conv3 = nn.Conv2d(64, 128, kernel_size=3, padding=1)
         # action policy layers
         self.act_conv1 = nn.Conv2d(128, 4, kernel_size=1)
         self.act_fc1 = nn.Linear(4*board_width*board_height,
-                                 board_width*board_height)
+                                 board_width*board_height + 1)
         # state value layers
         self.val_conv1 = nn.Conv2d(128, 2, kernel_size=1)
         self.val_fc1 = nn.Linear(2*board_width*board_height, 64)
@@ -92,24 +92,21 @@ class PolicyValueNet():
             act_probs = np.exp(log_act_probs.data.numpy())
             return act_probs, value.data.numpy()
 
-    def policy_value_fn(self, board):
+    def policy_value_fn(self, features):
         """
         input: board
         output: a list of (action, probability) tuples for each available
         action and the score of the board state
         """
-        legal_positions = go.Position(board).all_legal_moves()
-        current_state = board
+        features=np.expand_dims(features, 0)
         if self.use_gpu:
             log_act_probs, value = self.policy_value_net(
-                    Variable(torch.tensor(current_state.astype('uint8'))).cuda().float())
+                    Variable(torch.tensor(features.astype('uint8'))).cuda().float())
             act_probs = np.exp(log_act_probs.data.cpu().numpy().flatten())
         else:
             log_act_probs, value = self.policy_value_net(
-                    Variable(torch.tensor(current_state.astype('uint8'))).float())
+                    Variable(torch.tensor(features.astype('uint8'))).float())
             act_probs = np.exp(log_act_probs.data.numpy().flatten())
-        act_probs = zip(legal_positions, act_probs[legal_positions])
-        value = value.data[0][0]
         return act_probs, value
 
     def train_step(self, state_batch, mcts_probs, winner_batch, lr):

@@ -211,7 +211,7 @@ class MCTSNode(object):
         # continuing to explore the most favorable move. This is a waste of search.
         #
         # The value seeded here acts as a prior, and gets averaged into Q calculations.
-        self.child_W = np.ones([go.N * go.N + 1], dtype=np.float32) * value
+        self.child_W = np.ones([go.N * go.N + 1], dtype=np.float32) * value.cpu().detach().numpy()
         self.backup_value(value, up_to=up_to)
 
     def backup_value(self, value, up_to):
