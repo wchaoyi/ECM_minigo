@@ -61,11 +61,8 @@ def play(network):
 
     # Must run this once at the start to expand the root node.
     first_node = player.root.select_leaf()
-    print(first_node.position)
     features=extract_features(first_node.position, NEW_FEATURES)
-    print(features.shape)
     prob, val = network.policy_value_fn(features)
-    print(prob.shape, val)
     first_node.incorporate_results(prob, val, first_node)
 
     while True:

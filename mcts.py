@@ -212,6 +212,7 @@ class MCTSNode(object):
         #
         # The value seeded here acts as a prior, and gets averaged into Q calculations.
         self.child_W = np.ones([go.N * go.N + 1], dtype=np.float32) * value.cpu().detach().numpy()
+        self.child_W=self.child_W[0]
         self.backup_value(value, up_to=up_to)
 
     def backup_value(self, value, up_to):
