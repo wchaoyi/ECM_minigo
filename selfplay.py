@@ -63,7 +63,7 @@ def play(network):
     first_node = player.root.select_leaf()
     features=extract_features(first_node.position, NEW_FEATURES)
     prob, val = network.policy_value_fn(features)
-    first_node.incorporate_results(prob, val, first_node)
+    first_node.incorporate_results(prob.flatten(), val.flatten(), first_node)
 
     while True:
         start = time.time()

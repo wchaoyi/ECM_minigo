@@ -98,15 +98,16 @@ class PolicyValueNet():
         output: a list of (action, probability) tuples for each available
         action and the score of the board state
         """
-        features=np.expand_dims(features, 0)
+        if features.ndim == 3:
+            features=np.expand_dims(features, 0)
         if self.use_gpu:
             log_act_probs, value = self.policy_value_net(
                     Variable(torch.tensor(features.astype('uint8'))).cuda().float())
-            act_probs = np.exp(log_act_probs.data.cpu().numpy().flatten())
+            act_probs = np.exp(log_act_probs.data.cpu().numpy())
         else:
             log_act_probs, value = self.policy_value_net(
                     Variable(torch.tensor(features.astype('uint8'))).float())
-            act_probs = np.exp(log_act_probs.data.numpy().flatten())
+            act_probs = np.exp(log_act_probs.data.numpy())
         return act_probs, value
 
     def train_step(self, state_batch, mcts_probs, winner_batch, lr):

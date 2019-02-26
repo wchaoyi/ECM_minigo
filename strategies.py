@@ -15,7 +15,7 @@
 import os
 import random
 import time
-
+import numpy as np
 from absl import flags
 
 import coords
@@ -24,7 +24,7 @@ import mcts
 import sgf_wrapper
 from utils import dbg
 from player_interface import MCTSPlayerInterface
-
+from features import extract_features
 
 flags.DEFINE_integer('softpick_move_cutoff', (go.N * go.N // 12) // 2 * 2,
                      'The move number (<) up to which moves are softpicked from MCTS visits.')
@@ -194,6 +194,7 @@ class MCTSPlayer(MCTSPlayerInterface):
         if parallel_readouts is None:
             parallel_readouts = min(FLAGS.parallel_readouts, self.num_readouts)
         leaves = []
+        leaves_ft=[]
         failsafe = 0
         while len(leaves) < parallel_readouts and failsafe < parallel_readouts * 2:
             failsafe += 1
@@ -207,8 +208,10 @@ class MCTSPlayer(MCTSPlayerInterface):
                 continue
             leaf.add_virtual_loss(up_to=self.root)
             leaves.append(leaf)
+            leaves_ft.append(extract_features(leaf.position))
         if leaves:
-            move_probs, values = self.network.policy_value_fn(leaves)
+            leaves_np=np.array(leaves_ft)
+            move_probs, values = self.network.policy_value_fn(leaves_np)
             for leaf, move_prob, value in zip(leaves, move_probs, values):
                 leaf.revert_virtual_loss(up_to=self.root)
                 leaf.incorporate_results(move_prob, value, up_to=self.root)

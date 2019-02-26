@@ -212,7 +212,6 @@ class MCTSNode(object):
         #
         # The value seeded here acts as a prior, and gets averaged into Q calculations.
         self.child_W = np.ones([go.N * go.N + 1], dtype=np.float32) * value.cpu().detach().numpy()
-        self.child_W=self.child_W[0]
         self.backup_value(value, up_to=up_to)
 
     def backup_value(self, value, up_to):
@@ -299,7 +298,7 @@ class MCTSNode(object):
             p_delta), where=prior != 0)
         # Dump out some statistics
         output = []
-        output.append("{q:.4f}\n".format(q=self.Q))
+        output.append("{q:.4}\n".format(q=str(self.Q)))
         output.append(self.most_visited_path())
         output.append(
             "move : action    Q     U     P   P-Dir    N  soft-N  p-delta  p-rel")
