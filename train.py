@@ -13,10 +13,11 @@ from strategies import MCTSPlayer
 from mcts_pure import MCTSPlayer as MCTS_Pure
 from policy_value_net import PolicyValueNet  # Pytorch
 import selfplay
-import go
+import os
 import sys
 
-flags.DEFINE_string('model_path', None, 'model to train')
+flags.DEFINE_string('model_path', None, 'model path')
+flags.DEFINE_string('model_name', None, 'model name')
 flags.DEFINE_boolean('use_gpu', True, 'whether to use gpu')
 FLAGS = flags.FLAGS
 FLAGS(sys.argv)
@@ -24,7 +25,7 @@ FLAGS(sys.argv)
 
 class TrainPipeline():
 
-    def __init__(self, init_model=FLAGS.model_path):
+    def __init__(self, model_path=FLAGS.model_path, model_name=FLAGS.model_name):
         # params of the board and the game
         self.board_width = 9
         self.board_height = 9
@@ -47,15 +48,12 @@ class TrainPipeline():
         # num of simulations used for the pure mcts, which is used as
         # the opponent to evaluate the trained policy
         self.pure_mcts_playout_num = 1000
-        if init_model:
-            # start training from an initial policy-value net
-            self.policy_value_net = PolicyValueNet(self.board_width,
-                                                   self.board_height,
-                                                   model_file=init_model, use_gpu=FLAGS.use_gpu)
-        else:
-            # start training from a new policy-value net
-            self.policy_value_net = PolicyValueNet(self.board_width,
-                                                   self.board_height, use_gpu=FLAGS.use_gpu)
+        self.policy_value_net = PolicyValueNet(self.board_width,
+                                               self.board_height,
+                                               model_path=model_path,
+                                               model_name=model_name,
+                                               use_gpu=FLAGS.use_gpu)
+        self.policy_value_net.save_model()
         self.mcts_player = MCTSPlayer(self.policy_value_net.policy_value_fn)
 
     def get_equi_data(self, play_data):
@@ -83,12 +81,13 @@ class TrainPipeline():
     def collect_selfplay_data(self, n_games=1):
         """collect self-play data for training"""
         for i in range(n_games):
-            winner, play_data = selfplay.play(self.policy_value_net)
-            play_data = list(play_data)[:]
-            self.episode_len = len(play_data)
-            # augment the data
-            play_data = self.get_equi_data(play_data)
-            self.data_buffer.extend(play_data)
+            winner = selfplay.play(self.policy_value_net)
+            winner.to_sgf()
+            # play_data = list(play_data)[:]
+            # self.episode_len = len(play_data)
+            # # augment the data
+            # play_data = self.get_equi_data(play_data)
+            # self.data_buffer.extend(play_data)
 
     def policy_update(self):
         """update the policy-value net"""

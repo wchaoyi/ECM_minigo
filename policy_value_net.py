@@ -10,7 +10,7 @@ import torch.optim as optim
 import torch.nn.functional as F
 from torch.autograd import Variable
 import numpy as np
-import go
+import os
 
 
 def set_learning_rate(optimizer, lr):
@@ -59,7 +59,10 @@ class Net(nn.Module):
 class PolicyValueNet():
     """policy-value network """
     def __init__(self, board_width, board_height,
-                 model_file=None, use_gpu=False):
+                 model_path=None, model_name=None, use_gpu=False):
+
+        self.model_path = model_path
+        self.model_name = model_name
         self.use_gpu = use_gpu
         self.board_width = board_width
         self.board_height = board_height
@@ -72,8 +75,8 @@ class PolicyValueNet():
         self.optimizer = optim.Adam(self.policy_value_net.parameters(),
                                     weight_decay=self.l2_const)
 
-        if model_file:
-            net_params = torch.load(model_file)
+        if os.path.isfile(os.path.join(model_path, model_name)):
+            net_params = torch.load(os.path.join(model_path, model_name))
             self.policy_value_net.load_state_dict(net_params)
 
     def policy_value(self, state_batch):
@@ -147,7 +150,7 @@ class PolicyValueNet():
         net_params = self.policy_value_net.state_dict()
         return net_params
 
-    def save_model(self, model_file):
+    def save_model(self):
         """ save model params to file """
         net_params = self.get_policy_param()  # get model params
-        torch.save(net_params, model_file)
+        torch.save(net_params, os.path.join(self.model_path, self.model_name))
