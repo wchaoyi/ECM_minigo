@@ -46,7 +46,7 @@ flags.DEFINE_integer('parallel_readouts', 8,
 
 # this should be called "verbosity" but flag name conflicts with absl.logging.
 # Should fix this by overhauling this logging system with appropriate logging.info/debug.
-flags.DEFINE_integer('verbose', 3, 'How much debug info to print.')
+flags.DEFINE_integer('verbose', 0, 'How much debug info to print.')
 
 flags.declare_key_flag('verbose')
 flags.declare_key_flag('num_readouts')
@@ -263,12 +263,19 @@ class MCTSPlayer(MCTSPlayerInterface):
                                     black_name=self.network.model_name or "Unknown",
                                     comments=comments)
 
-    def extract_data(self):
+    def extract_data(self, return_features=False):
         assert len(self.searches_pi) == self.root.position.n
         assert self.result != 0
+        positions, pis, values = [], [], []
         for pwc, pi in zip(go.replay_position(self.root.position, self.result),
                            self.searches_pi):
-            yield pwc.position, pi, pwc.result
+            if return_features:
+                positions.append(extract_features(pwc.position))
+            else :
+                positions.append(pwc.position)
+            pis.append(pi)
+            values.append(pwc.result)
+        return positions, pis, values
 
     def get_num_readouts(self):
         return self.num_readouts

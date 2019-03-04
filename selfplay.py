@@ -25,14 +25,20 @@ import coords
 from strategies import MCTSPlayer
 import utils
 from features import extract_features, NEW_FEATURES
+import preprocessing
+import multiprocessing
 
-flags.DEFINE_string('load_file', None, 'Path to model save files.')
+flags.DEFINE_string('model_path', None, 'Path to model save files.')
+flags.DEFINE_string('model_name', None, 'Model name.')
+flags.DEFINE_boolean('use_gpu', True, 'Wheter to use GPU')
 flags.DEFINE_string('selfplay_dir', None, 'Where to write game data.')
 flags.DEFINE_string('holdout_dir', None, 'Where to write held-out game data.')
 flags.DEFINE_string('sgf_dir', None, 'Where to write human-readable SGFs.')
 flags.DEFINE_float('holdout_pct', 0.05, 'What percent of games to hold out.')
 flags.DEFINE_float('resign_disable_pct', 0.05,
                    'What percent of games to disable resign for.')
+flags.DEFINE_integer('processes', None, "number of processes to use")
+flags.DEFINE_integer('nb_games', None, "number of games to play")
 
 # From strategies.py
 flags.declare_key_flag('verbose')
@@ -103,9 +109,13 @@ def play(network):
     return player
 
 
-def run_game(load_file, selfplay_dir=None, holdout_dir=None,
+def run_game(model_path, model_name, use_gpu,
              sgf_dir=None, holdout_pct=0.05):
     '''Takes a played game and record results and game data.'''
+    selfplay_dir=os.path.join("outputs","train", model_name)
+    utils.ensure_dir_exists(selfplay_dir)
+    holdout_dir = os.path.join("outputs", "valid", model_name)
+    utils.ensure_dir_exists(holdout_dir)
     if sgf_dir is not None:
         minimal_sgf_dir = os.path.join(sgf_dir, 'clean')
         full_sgf_dir = os.path.join(sgf_dir, 'full')
@@ -115,45 +125,59 @@ def run_game(load_file, selfplay_dir=None, holdout_dir=None,
         utils.ensure_dir_exists(selfplay_dir)
         utils.ensure_dir_exists(holdout_dir)
 
-    with utils.logged_timer("Loading weights from %s ... " % load_file):
-        network = PolicyValueNet(9,9, model_file=load_file)
+    with utils.logged_timer("Loading weights from %s ... " % model_name):
+        network = PolicyValueNet(9,9, model_path, model_name, use_gpu)
 
     with utils.logged_timer("Playing game"):
         player = play(network)
 
     output_name = '{}-{}'.format(int(time.time()), socket.gethostname())
-    game_data = player.extract_data()
+    features, pis, values = player.extract_data(return_features=True)
+    features=np.array(features)
+    pis=np.array(pis)
+    values=np.array(values)
+    assert features.shape[0] == pis.shape[0] == values.shape[0]
     if sgf_dir is not None:
         with open(os.path.join(minimal_sgf_dir, '{}.sgf'.format(output_name)), 'w') as f:
             f.write(player.to_sgf(use_comments=False))
         with open(os.path.join(full_sgf_dir, '{}.sgf'.format(output_name)), 'w') as f:
             f.write(player.to_sgf())
 
-    tf_examples = preprocessing.make_dataset_from_selfplay(game_data)
+
 
     if selfplay_dir is not None:
         # Hold out 5% of games for validation.
         if random.random() < holdout_pct:
             fname = os.path.join(holdout_dir,
-                                 "{}.tfrecord.zz".format(output_name))
+                                 "{}.hdf5".format(output_name))
         else:
             fname = os.path.join(selfplay_dir,
-                                 "{}.tfrecord.zz".format(output_name))
+                                 "{}.hdf5".format(output_name))
 
-        preprocessing.write_tf_examples(fname, tf_examples)
 
+        preprocessing.save_h5_examples(fname, features, pis, values)
+
+
+def worker(num):
+    run_game(model_path=FLAGS.model_path, model_name=FLAGS.model_name, use_gpu=FLAGS.use_gpu,
+             holdout_pct=FLAGS.holdout_pct)
+    return "ok"
+def run_many_game(proccesses, nb_games):
+    pool=multiprocessing.Pool(proccesses)
+    pool.map(worker, range(nb_games))
+    pool.close()
+    pool.join()
 
 def main(argv):
     '''Entry point for running one selfplay game.'''
     del argv  # Unused
-    flags.mark_flag_as_required('load_file')
+    flags.mark_flag_as_required('model_path')
+    flags.mark_flag_as_required('processes')
+    flags.mark_flag_as_required('nb_games')
 
-    run_game(
-        load_file=FLAGS.load_file,
-        selfplay_dir=FLAGS.selfplay_dir,
-        holdout_dir=FLAGS.holdout_dir,
-        holdout_pct=FLAGS.holdout_pct,
-        sgf_dir=FLAGS.sgf_dir)
+    #run_game(model_path=FLAGS.model_path, model_name=FLAGS.model_name, use_gpu=FLAGS.use_gpu,
+     #        holdout_pct=FLAGS.holdout_pct)
+    run_many_game(FLAGS.processes, FLAGS.nb_games)
 
 
 if __name__ == '__main__':

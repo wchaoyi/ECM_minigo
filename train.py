@@ -12,8 +12,11 @@ from collections import defaultdict, deque
 from strategies import MCTSPlayer
 from mcts_pure import MCTSPlayer as MCTS_Pure
 from policy_value_net import PolicyValueNet  # Pytorch
+import subprocess
 import selfplay
+from features import extract_features
 import os
+from multiprocessing import Pool
 import sys
 
 flags.DEFINE_string('model_path', None, 'model path')
@@ -78,16 +81,11 @@ class TrainPipeline():
                                     winner))
         return extend_data
 
-    def collect_selfplay_data(self, n_games=1):
+
+    def generate_selfplay_data(self, n_games=1):
         """collect self-play data for training"""
-        for i in range(n_games):
-            winner = selfplay.play(self.policy_value_net)
-            winner.to_sgf()
-            # play_data = list(play_data)[:]
-            # self.episode_len = len(play_data)
-            # # augment the data
-            # play_data = self.get_equi_data(play_data)
-            # self.data_buffer.extend(play_data)
+        subprocess.call()
+
 
     def policy_update(self):
         """update the policy-value net"""
@@ -140,9 +138,7 @@ class TrainPipeline():
         Evaluate the trained policy by playing against the pure MCTS player
         Note: this is only for monitoring the progress of training
         """
-        current_mcts_player = MCTSPlayer(self.policy_value_net.policy_value_fn,
-                                         c_puct=self.c_puct,
-                                         n_playout=self.n_playout)
+        current_mcts_player = MCTSPlayer(self.policy_value_net.policy_value_fn)
         pure_mcts_player = MCTS_Pure(c_puct=5,
                                      n_playout=self.pure_mcts_playout_num)
         win_cnt = defaultdict(int)
