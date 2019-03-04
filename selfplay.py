@@ -131,12 +131,13 @@ def run_game(model_path, model_name, use_gpu,
     with utils.logged_timer("Playing game"):
         player = play(network)
 
-    output_name = '{}-{}'.format(int(time.time()), socket.gethostname())
+
     features, pis, values = player.extract_data(return_features=True)
     features=np.array(features)
     pis=np.array(pis)
     values=np.array(values)
     assert features.shape[0] == pis.shape[0] == values.shape[0]
+    output_name = '{}-{}'.format(int(time.time()), features.shape[0])
     if sgf_dir is not None:
         with open(os.path.join(minimal_sgf_dir, '{}.sgf'.format(output_name)), 'w') as f:
             f.write(player.to_sgf(use_comments=False))
