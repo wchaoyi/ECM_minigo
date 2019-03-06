@@ -17,6 +17,8 @@ import selfplay
 from features import extract_features
 import os
 from multiprocessing import Pool
+from preprocessing import TrainDataset
+from torch.utils import data
 import sys
 
 flags.DEFINE_string('model_path', None, 'model path')

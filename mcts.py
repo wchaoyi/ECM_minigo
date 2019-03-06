@@ -20,31 +20,32 @@ AlphaGo (AG) paper.
 
 import collections
 import math
+import argparse
 
-from absl import flags
 import numpy as np
 
 import coords
 import go
 
 # 722 moves for 19x19, 162 for 9x9
-flags.DEFINE_integer('max_game_length', int(go.N ** 2 * 2),
-                     'Move number at which game is forcibly terminated')
+mcts_parser =  argparse.ArgumentParser(description='mcts_parser')
+mcts_parser.add_argument('--max_game_length', default=int(go.N ** 2 * 2), type=int,
+                     help='Move number at which game is forcibly terminated')
 
-flags.DEFINE_float('c_puct', 0.96,
-                   'Exploration constant balancing priors vs. value net output.')
+mcts_parser.add_argument('--c_puct', default=0.96, type=float,
+                   help='Exploration constant balancing priors vs. value net output.')
 
-flags.DEFINE_float('dirichlet_noise_alpha', 0.03 * 361 / (go.N ** 2),
-                   'Concentrated-ness of the noise being injected into priors.')
-flags.register_validator('dirichlet_noise_alpha', lambda x: 0 <= x < 1)
+mcts_parser.add_argument('--dirichlet_noise_alpha', default=0.03 * 361 / (go.N ** 2), type=float,
+                   help='Concentrated-ness of the noise being injected into priors.')
+#flags.register_validator('dirichlet_noise_alpha', lambda x: 0 <= x < 1)
 
-flags.DEFINE_float('dirichlet_noise_weight', 0.25,
-                   'How much to weight the priors vs. dirichlet noise when mixing')
-flags.register_validator('dirichlet_noise_weight', lambda x: 0 <= x < 1)
+mcts_parser.add_argument('--dirichlet_noise_weight', default=0.25, type=float,
+                   help='How much to weight the priors vs. dirichlet noise when mixing')
+#flags.register_validator('dirichlet_noise_weight', lambda x: 0 <= x < 1)
 
-FLAGS = flags.FLAGS
+#mcts_args = flags.mcts_args
 
-
+mcts_args=mcts_parser.parse_args('')
 class DummyNode(object):
     """A fake node of a MCTS search tree.
 
@@ -103,7 +104,7 @@ class MCTSNode(object):
 
     @property
     def child_U(self):
-        return (FLAGS.c_puct * math.sqrt(max(1, self.N - 1)) *
+        return (mcts_args.c_puct * math.sqrt(max(1, self.N - 1)) *
                 self.child_prior / (1 + self.child_N))
 
     @property
@@ -231,15 +232,15 @@ class MCTSNode(object):
         '''True if the last two moves were Pass or if the position is at a move
         greater than the max depth.
         '''
-        return self.position.is_game_over() or self.position.n >= FLAGS.max_game_length
+        return self.position.is_game_over() or self.position.n >= mcts_args.max_game_length
 
     def inject_noise(self):
         epsilon = 1e-5
         legal_moves = (1 - self.illegal_moves) + epsilon
-        a = legal_moves * ([FLAGS.dirichlet_noise_alpha] * (go.N * go.N + 1))
+        a = legal_moves * ([mcts_args.dirichlet_noise_alpha] * (go.N * go.N + 1))
         dirichlet = np.random.dirichlet(a)
-        self.child_prior = (self.child_prior * (1 - FLAGS.dirichlet_noise_weight) +
-                            dirichlet * FLAGS.dirichlet_noise_weight)
+        self.child_prior = (self.child_prior * (1 - mcts_args.dirichlet_noise_weight) +
+                            dirichlet * mcts_args.dirichlet_noise_weight)
 
     def children_as_pi(self, squash=False):
         """Returns the child visit counts as a probability distribution, pi

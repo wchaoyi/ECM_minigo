@@ -56,11 +56,11 @@ class Net(nn.Module):
         return x_act, x_val
 
 
-class PolicyValueNet():
+class PolicyValueNet(torch.nn.Module):
     """policy-value network """
     def __init__(self, board_width, board_height,
                  model_path=None, model_name=None, use_gpu=False):
-
+        super(PolicyValueNet, self).__init__()
         self.model_path = model_path
         self.model_name = model_name
         self.use_gpu = use_gpu
@@ -68,12 +68,7 @@ class PolicyValueNet():
         self.board_height = board_height
         self.l2_const = 1e-4  # coef of l2 penalty
         # the policy value net module
-        if self.use_gpu:
-            self.policy_value_net = Net(board_width, board_height).cuda()
-        else:
-            self.policy_value_net = Net(board_width, board_height)
-        self.optimizer = optim.Adam(self.policy_value_net.parameters(),
-                                    weight_decay=self.l2_const)
+        self.policy_value_net = Net(board_width, board_height) #.cuda()
 
         if os.path.isfile(os.path.join(model_path, model_name)):
             net_params = torch.load(os.path.join(model_path, model_name))
@@ -95,7 +90,7 @@ class PolicyValueNet():
             act_probs = np.exp(log_act_probs.data.numpy())
             return act_probs, value.data.numpy()
 
-    def policy_value_fn(self, features):
+    def policy_value_fn(self, features, device='cuda:0'):
         """
         input: board
         output: a list of (action, probability) tuples for each available
@@ -104,8 +99,7 @@ class PolicyValueNet():
         if features.ndim == 3:
             features=np.expand_dims(features, 0)
         if self.use_gpu:
-            log_act_probs, value = self.policy_value_net(
-                    Variable(torch.tensor(features.astype('uint8'))).cuda().float())
+            log_act_probs, value = self.policy_value_net(torch.tensor(features).to(device=device, dtype=torch.float))
             act_probs = np.exp(log_act_probs.data.cpu().numpy())
         else:
             log_act_probs, value = self.policy_value_net(

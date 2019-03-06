@@ -16,8 +16,7 @@ import os
 import random
 import time
 import numpy as np
-from absl import flags
-
+import argparse
 import coords
 import go
 import mcts
@@ -26,32 +25,32 @@ from utils import dbg
 from player_interface import MCTSPlayerInterface
 from features import extract_features
 
-flags.DEFINE_integer('softpick_move_cutoff', (go.N * go.N // 12) // 2 * 2,
-                     'The move number (<) up to which moves are softpicked from MCTS visits.')
+
+strat_parser = argparse.ArgumentParser(description='strategies')
+strat_parser.add_argument('--softpick_move_cutoff', default=(go.N * go.N // 12) // 2 * 2, type=float,
+                     help='The move number (<) up to which moves are softpicked from MCTS visits.')
 # Ensure that both white and black have an equal number of softpicked moves.
-flags.register_validator('softpick_move_cutoff', lambda x: x % 2 == 0)
+#flags.register_validator('softpick_move_cutoff', lambda x: x % 2 == 0)
 
-flags.DEFINE_float('resign_threshold', -0.9,
-                   'The post-search Q evaluation at which resign should happen.'
+strat_parser.add_argument('--resign_threshold', default=-0.9, type=float,
+                   help='The post-search Q evaluation at which resign should happen.'
                    'A threshold of -1 implies resign is disabled.')
-flags.register_validator('resign_threshold', lambda x: -1 <= x < 0)
+#flags.register_validator('resign_threshold', lambda x: -1 <= x < 0)
 
-flags.DEFINE_integer('num_readouts', 800 if go.N == 19 else 200,
-                    'Number of searches to add to the MCTS search tree before playing a move.')
-flags.register_validator('num_readouts', lambda x: x > 0)
+strat_parser.add_argument('--num_readouts', default=800 if go.N == 19 else 200, type=int,
+                     help='Number of searches to add to the MCTS search tree before playing a move.')
+#flags.register_validator('num_readouts', lambda x: x > 0)
 
-flags.DEFINE_integer('parallel_readouts', 8,
-                     'Number of searches to execute in parallel. This is also the batch size'
+strat_parser.add_argument('--parallel_readouts', default=8, type=int,
+                     help='Number of searches to execute in parallel. This is also the batch size'
                      'for neural network evaluation.')
 
-# this should be called "verbosity" but flag name conflicts with absl.logging.
-# Should fix this by overhauling this logging system with appropriate logging.info/debug.
-flags.DEFINE_integer('verbose', 0, 'How much debug info to print.')
+strat_parser.add_argument('--verbose', default=0, type=int,
+                     help='Amount of explanations to give')
+#flags.declare_key_flag('num_readouts')
 
-flags.declare_key_flag('verbose')
-flags.declare_key_flag('num_readouts')
+#strat_args = flags.strat_args
 
-FLAGS = flags.FLAGS
 
 
 def time_recommendation(move_num, seconds_per_move=5, time_limit=15 * 60,
@@ -84,22 +83,23 @@ def time_recommendation(move_num, seconds_per_move=5, time_limit=15 * 60,
 
 
 class MCTSPlayer(MCTSPlayerInterface):
-    def __init__(self, network, seconds_per_move=5, num_readouts=0,
+    def __init__(self, network, device=None, seconds_per_move=5, num_readouts=0,
                  resign_threshold=None, two_player_mode=False,
                  timed_match=False):
         self.network = network
+        self.device = device
         self.seconds_per_move = seconds_per_move
-        self.num_readouts = num_readouts or FLAGS.num_readouts
-        self.verbosity = FLAGS.verbose
+        self.num_readouts = num_readouts or strat_args.num_readouts
+        self.verbosity = strat_args.verbose
         self.two_player_mode = two_player_mode
         if two_player_mode:
             self.temp_threshold = -1
         else:
-            self.temp_threshold = FLAGS.softpick_move_cutoff
+            self.temp_threshold = strat_args.softpick_move_cutoff
 
         self.initialize_game()
         self.root = None
-        self.resign_threshold = resign_threshold or FLAGS.resign_threshold
+        self.resign_threshold = resign_threshold or strat_args.resign_threshold
         self.timed_match = timed_match
         assert (self.timed_match and self.seconds_per_move >
                 0) or self.num_readouts > 0
@@ -192,7 +192,7 @@ class MCTSPlayer(MCTSPlayerInterface):
 
     def tree_search(self, parallel_readouts=None):
         if parallel_readouts is None:
-            parallel_readouts = min(FLAGS.parallel_readouts, self.num_readouts)
+            parallel_readouts = min(strat_args.parallel_readouts, self.num_readouts)
         leaves = []
         leaves_ft=[]
         failsafe = 0
@@ -211,7 +211,7 @@ class MCTSPlayer(MCTSPlayerInterface):
             leaves_ft.append(extract_features(leaf.position))
         if leaves:
             leaves_np=np.array(leaves_ft)
-            move_probs, values = self.network.policy_value_fn(leaves_np)
+            move_probs, values = self.network.policy_value_fn(leaves_np, device=self.device)
             for leaf, move_prob, value in zip(leaves, move_probs, values):
                 leaf.revert_virtual_loss(up_to=self.root)
                 leaf.incorporate_results(move_prob, value, up_to=self.root)
@@ -228,7 +228,7 @@ class MCTSPlayer(MCTSPlayerInterface):
                                   coords.to_gtp(move.move))
 
         path = " ".join(fmt(move) for move in pos.recent[-diff:])
-        if node.position.n >= FLAGS.max_game_length:
+        if node.position.n >= strat_args.max_game_length:
             path += " (depth cutoff reached) %0.1f" % node.position.score()
         elif node.position.is_game_over():
             path += " (game over) %0.1f" % node.position.score()
@@ -288,3 +288,9 @@ class CGOSPlayer(MCTSPlayer):
     def suggest_move(self, position):
         self.seconds_per_move = time_recommendation(position.n)
         return super().suggest_move(position)
+
+
+def main(args):
+    return strat_parser.parse_args(args)
+
+strat_args=strat_parser.parse_args('')

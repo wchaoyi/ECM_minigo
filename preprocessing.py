@@ -35,7 +35,7 @@ def save_h5_examples(fname, features, pi, value):
     dvalue = file.create_dataset('value', data = value)
     file.close()
 
-class Dataset(data.Dataset):
+class TrainDataset(data.Dataset):
     def __init__(self, data_path, model_name):
         self.list_IDs=os.listdir(os.path.join(data_path, model_name))
         self.lengths=[]
@@ -45,8 +45,6 @@ class Dataset(data.Dataset):
             _, length = parse("{}-{}.hdf5", name)
             self.lengths.append(int(length))
         self.cumsum = np.cumsum(self.lengths)
-
-
 
     def __len__(self):
         return sum(self.lengths)
@@ -60,7 +58,9 @@ class Dataset(data.Dataset):
         sample = {'features': features, 'pi':pi, 'value' : value}
         return sample
 
-
+class SelfplayDataset(data.Dataset):
+    def __init__(self):
+        pass
 
 
 
