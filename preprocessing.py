@@ -35,7 +35,7 @@ def save_h5_examples(fname, features, pi, value):
     dvalue = file.create_dataset('value', data = value)
     file.close()
 
-class TrainDataset(data.Dataset):
+class SelfPlayDataset(data.Dataset):
     def __init__(self, data_path, model_name):
         self.list_IDs=os.listdir(os.path.join(data_path, model_name))
         self.lengths=[]
@@ -51,17 +51,12 @@ class TrainDataset(data.Dataset):
 
     def __getitem__(self, idx):
         nfile=np.where(self.cumsum>idx)[0][0]
-        f=h5.File(os.path.join(self.data_path, self.model_name, self.list_IDs[nfile]))
+        f=h5.File(os.path.join(self.data_path, self.model_name, self.list_IDs[nfile]), mode='r')
         features=f['features'][idx-self.cumsum[nfile-1 if nfile >= 1 else 0]]
         pi=f['pi'][idx-self.cumsum[nfile-1 if nfile >=1 else 0]]
         value=f['value'][idx-self.cumsum[nfile-1 if nfile >=1 else 0]]
         sample = {'features': features, 'pi':pi, 'value' : value}
         return sample
-
-class SelfplayDataset(data.Dataset):
-    def __init__(self):
-        pass
-
 
 
 def make_train_dataset():

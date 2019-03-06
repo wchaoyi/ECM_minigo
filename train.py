@@ -13,9 +13,6 @@ from strategies import MCTSPlayer
 from mcts_pure import MCTSPlayer as MCTS_Pure
 from policy_value_net import PolicyValueNet  # Pytorch
 import subprocess
-import selfplay
-from features import extract_features
-import os
 from multiprocessing import Pool
 from preprocessing import TrainDataset
 from torch.utils import data
