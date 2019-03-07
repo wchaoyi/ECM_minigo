@@ -21,10 +21,11 @@ parser.add_argument('--epochs', type=int, default=1, help='epochs')
 def train(args):
     trainset=SelfPlayDataset(args.selfplay_dir, args.model_name)
     validset=SelfPlayDataset(args.holdout_dir, args.model_name)
-    trainloader= dt.DataLoader(trainset, batch_size=32, shuffle=True, num_workers=100)
+    trainloader= dt.DataLoader(trainset, batch_size=32, shuffle=True, num_workers=8)
     device = torch.device('cuda:0' if args.use_gpu else 'cpu')
     net=PolicyValueNet(9,9, args.model_path, args.model_name, args.use_gpu).to(device)
     optimizer=Adam(net.parameters())
+    print('Training {} on {} examples'.format(args.model_name, len(trainset)))
     for epoch in range(args.epochs):
         for batch_idx, data in enumerate(trainloader):
             features, pi, value = data['features'], data['pi'], data['value']
@@ -40,6 +41,7 @@ def train(args):
             loss.backward()
             optimizer.step()
         print(epoch, loss)
+    net.save_model()
 if __name__ == '__main__':
     args = parser.parse_args()
     train(args)

@@ -271,7 +271,7 @@ class MCTSPlayer(MCTSPlayerInterface):
                            self.searches_pi):
             if return_features:
                 positions.append(extract_features(pwc.position))
-            else :
+            else:
                 positions.append(pwc.position)
             pis.append(pi)
             values.append(pwc.result)

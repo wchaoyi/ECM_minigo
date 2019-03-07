@@ -11,6 +11,8 @@ import torch.nn.functional as F
 from torch.autograd import Variable
 import numpy as np
 import os
+import parse
+
 
 
 def set_learning_rate(optimizer, lr):
@@ -69,10 +71,13 @@ class PolicyValueNet(torch.nn.Module):
         self.l2_const = 1e-4  # coef of l2 penalty
         # the policy value net module
         self.policy_value_net = Net(board_width, board_height) #.cuda()
+        format_name='model_{}'
+        self.model_num=int(parse.parse(format_name, self.model_name)[0])
 
         if os.path.isfile(os.path.join(model_path, model_name)):
-            net_params = torch.load(os.path.join(model_path, model_name))
+            net_params = torch.load(os.path.join(model_path, model_name), map_location=None if self.use_gpu else 'cpu')
             self.policy_value_net.load_state_dict(net_params)
+
 
     def policy_value(self, state_batch):
         """
@@ -147,4 +152,6 @@ class PolicyValueNet(torch.nn.Module):
     def save_model(self):
         """ save model params to file """
         net_params = self.get_policy_param()  # get model params
-        torch.save(net_params, os.path.join(self.model_path, self.model_name))
+        new_name='model_{}'.format(self.model_num+1)
+        torch.save(net_params, os.path.join(self.model_path, new_name))
+        print('Saving {}'.format(new_name))
