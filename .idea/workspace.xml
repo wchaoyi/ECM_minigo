@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6e280fe0-8eca-4e90-8ea9-dcd0b53f1e94" name="Default" comment="bringing train_from_disk first baseline of training procedure compatible with our implementation">
+    <list default="true" id="6e280fe0-8eca-4e90-8ea9-dcd0b53f1e94" name="Default" comment="adapting gtp.py, saving model in train from disk">
+      <change afterPath="$PROJECT_DIR$/residual_policy_value_net.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gtp.py" beforeDir="false" afterPath="$PROJECT_DIR$/gtp.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dual_net.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dual_net_pytorch.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/freeze_graph.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mcts_alphaZero.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mcts_pure.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/policy_value_net.py" beforeDir="false" afterPath="$PROJECT_DIR$/policy_value_net.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/strategies.py" beforeDir="false" afterPath="$PROJECT_DIR$/strategies.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/train_from_disk.py" beforeDir="false" afterPath="$PROJECT_DIR$/train_from_disk.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/selfplay.py" beforeDir="false" afterPath="$PROJECT_DIR$/selfplay.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/train.py" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -15,9 +20,9 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/ECM_minigo$selfplay.coverage" NAME="selfplay Coverage Results" MODIFIED="1551879614946" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/ECM_minigo$selfplay.coverage" NAME="selfplay Coverage Results" MODIFIED="1552053185119" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/ECM_minigo$train.coverage" NAME="train Coverage Results" MODIFIED="1551702934025" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/ECM_minigo$train_from_disk.coverage" NAME="train_from_disk Coverage Results" MODIFIED="1551971010157" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/ECM_minigo$train_from_disk.coverage" NAME="train_from_disk Coverage Results" MODIFIED="1552037941052" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/ECM_minigo$bootstrap.coverage" NAME="bootstrap Coverage Results" MODIFIED="1550585429498" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="CreatePatchCommitExecutor">
@@ -42,11 +47,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/selfplay.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="575">
-              <caret line="48" column="63" selection-start-line="48" selection-start-column="12" selection-end-line="48" selection-end-column="63" />
-              <folding>
-                <element signature="e#580#595#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="130">
+              <caret line="20" column="52" lean-forward="true" selection-start-line="20" selection-start-column="52" selection-end-line="20" selection-end-column="52" />
             </state>
           </provider>
         </entry>
@@ -54,7 +56,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/selfplay_utils.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-850">
+            <state relative-caret-position="272">
               <caret line="25" selection-start-line="25" selection-end-line="25" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
@@ -64,46 +66,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/strategies.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="388">
-              <caret line="273" column="16" selection-start-line="273" selection-start-column="16" selection-end-line="273" selection-end-column="16" />
-              <folding>
-                <element signature="e#576#585#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/gtp.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="51" column="16" selection-start-line="51" selection-start-column="16" selection-end-line="51" selection-end-column="16" />
-              <folding>
-                <element signature="e#621#630#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/go.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="70" column="10" selection-start-line="70" selection-start-column="4" selection-end-line="70" selection-end-column="10" />
-              <folding>
-                <element signature="e#828#862#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/gtp_engine.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="192">
-              <caret line="68" column="24" selection-start-line="68" selection-start-column="24" selection-end-line="68" selection-end-column="24" />
+            <state relative-caret-position="340">
+              <caret line="20" column="16" lean-forward="true" selection-start-line="20" selection-start-column="16" selection-end-line="20" selection-end-column="16" />
               <folding>
                 <element signature="e#693#707#0" expanded="true" />
               </folding>
@@ -111,13 +77,37 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/policy_value_net.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="277">
-              <caret line="73" column="30" lean-forward="true" selection-start-line="73" selection-start-column="30" selection-end-line="73" selection-end-column="30" />
+            <state relative-caret-position="-51">
+              <caret line="18" column="13" lean-forward="true" selection-start-line="17" selection-end-line="20" selection-end-column="30" />
               <folding>
                 <element signature="e#116#128#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/residual_policy_value_net.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="190">
+              <caret line="52" column="74" selection-start-line="52" selection-start-column="74" selection-end-line="52" selection-end-column="74" />
+              <folding>
+                <element signature="e#0#12#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/train_from_disk.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="459">
+              <caret line="27" column="78" selection-start-line="27" selection-start-column="78" selection-end-line="27" selection-end-column="78" />
+              <folding>
+                <element signature="e#0#37#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -134,8 +124,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>value</find>
-      <find>fmove</find>
       <find>self.fmove</find>
       <find>policy_value_fn</find>
       <find>self.paren</find>
@@ -164,6 +152,8 @@
       <find>-</find>
       <find>make_gtp</find>
       <find>make</find>
+      <find>self.input</find>
+      <find>set</find>
     </findStrings>
     <replaceStrings>
       <replace>coords.to_gtp</replace>
@@ -201,14 +191,16 @@
         <option value="$PROJECT_DIR$/features.py" />
         <option value="$PROJECT_DIR$/mcts.py" />
         <option value="$PROJECT_DIR$/selfplay_utils.py" />
-        <option value="$PROJECT_DIR$/selfplay.py" />
         <option value="$PROJECT_DIR$/train.py" />
         <option value="$PROJECT_DIR$/strategies.py" />
         <option value="$PROJECT_DIR$/preprocessing.py" />
         <option value="$PROJECT_DIR$/go.py" />
-        <option value="$PROJECT_DIR$/train_from_disk.py" />
         <option value="$PROJECT_DIR$/gtp.py" />
+        <option value="$PROJECT_DIR$/train_from_disk.py" />
         <option value="$PROJECT_DIR$/policy_value_net.py" />
+        <option value="$PROJECT_DIR$/estimator_working_dir/residual_policy_value_net.py" />
+        <option value="$PROJECT_DIR$/selfplay.py" />
+        <option value="$PROJECT_DIR$/residual_policy_value_net.py" />
       </list>
     </option>
   </component>
@@ -223,7 +215,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -235,6 +226,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -246,6 +238,11 @@
     <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -259,7 +256,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.train_from_disk">
+  <component name="RunManager" selected="Python.selfplay">
     <configuration name="bootstrap" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="ECM_minigo" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -296,7 +293,7 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/selfplay.py" />
-      <option name="PARAMETERS" value="--use_gpu=True --num_processes=16 --nb_games=16 --model_path=models --model_name=model_0" />
+      <option name="PARAMETERS" value="--use_gpu=True --num_processes=8 --nb_games=100 --model_path=models --model_name=resnet18_0" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -356,8 +353,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.train_from_disk" />
         <item itemvalue="Python.selfplay" />
+        <item itemvalue="Python.train_from_disk" />
         <item itemvalue="Python.bootstrap" />
       </list>
     </recent_temporary>
@@ -393,7 +390,10 @@
       <workItem from="1551874416274" duration="17819000" />
       <workItem from="1551959962788" duration="658000" />
       <workItem from="1551962216876" duration="1650000" />
-      <workItem from="1551964562496" duration="5315000" />
+      <workItem from="1551964562496" duration="5354000" />
+      <workItem from="1552037693412" duration="4150000" />
+      <workItem from="1552045880813" duration="641000" />
+      <workItem from="1552046611430" duration="5312000" />
     </task>
     <task id="LOCAL-00001" summary="Reprise de la solution de tensorflow pour l'erreur de upper/lower case">
       <created>1549971661713</created>
@@ -493,11 +493,18 @@
       <option name="project" value="LOCAL" />
       <updated>1551892844807</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="adapting gtp.py, saving model in train from disk">
+      <created>1551971462382</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1551971462383</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="164763000" />
+    <option name="totallyTimeSpent" value="174905000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -512,28 +519,28 @@
     <frame x="0" y="30" width="1920" height="1050" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1650641" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.14262821" />
       <window_info id="Remote Host" order="1" sideWeight="0.49905482" weight="0.2008547" />
       <window_info id="Structure" order="2" weight="0.25320512" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32893288" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49893162" visible="true" weight="0.26842684" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49893162" visible="true" weight="0.25632563" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.29812983" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32893288" />
       <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.49946582" weight="0.32893288" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.32893288" />
-      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50106835" side_tool="true" weight="0.3839384" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5005342" side_tool="true" weight="0.3839384" />
       <window_info anchor="bottom" id="Python Console" order="10" weight="0.32893288" />
       <window_info anchor="bottom" id="Docker" order="11" show_stripe_button="false" />
-      <window_info anchor="bottom" id="File Transfer" order="12" weight="0.23432343" />
+      <window_info anchor="bottom" id="File Transfer" order="12" sideWeight="0.49946582" weight="0.23432343" />
       <window_info anchor="bottom" id="Database Changes" order="13" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" x="0" y="0" width="165" height="624" id="Documentation" order="3" sideWeight="0.50165015" side_tool="true" visible="true" weight="0.26976496" />
+      <window_info anchor="right" x="0" y="0" width="165" height="624" id="Documentation" order="3" sideWeight="0.50165015" side_tool="true" visible="true" weight="0.16720085" />
       <window_info anchor="right" id="Database" order="4" sideWeight="0.49834985" weight="0.32959402" />
       <window_info anchor="right" id="SciView" order="5" weight="0.32959402" />
     </layout>
@@ -578,7 +585,8 @@
     <MESSAGE value="implement Dataset class to read in selfplay h5 files" />
     <MESSAGE value="improve multiprocessing in selfplay" />
     <MESSAGE value="bringing train_from_disk first baseline of training procedure compatible with our implementation" />
-    <option name="LAST_COMMIT_MESSAGE" value="bringing train_from_disk first baseline of training procedure compatible with our implementation" />
+    <MESSAGE value="adapting gtp.py, saving model in train from disk" />
+    <option name="LAST_COMMIT_MESSAGE" value="adapting gtp.py, saving model in train from disk" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/coords.py">
@@ -610,39 +618,12 @@
     <entry file="file://$USER_HOME$/.PyCharm2018.3/system/remote_sources/-628395629/1606616944/torch/nn/functional.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/mcts_pure.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="819">
-          <caret line="202" column="8" selection-start-line="202" selection-start-column="8" selection-end-line="202" selection-end-column="8" />
-          <folding>
-            <element signature="e#91#109#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/mcts_pure.py" />
     <entry file="file://$PROJECT_DIR$/utils.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/dual_net_pytorch.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6762">
-          <caret line="442" column="27" selection-start-line="442" selection-start-column="27" selection-end-line="442" selection-end-column="27" />
-          <folding>
-            <element signature="e#0#22#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mcts_alphaZero.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3587">
-          <caret line="214" column="8" selection-start-line="214" selection-start-column="8" selection-end-line="214" selection-end-column="8" />
-          <folding>
-            <element signature="e#165#183#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/dual_net_pytorch.py" />
+    <entry file="file://$PROJECT_DIR$/mcts_alphaZero.py" />
     <entry file="file://$USER_HOME$/.PyCharm2018.3/system/python_stubs/-144720302/builtins.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="177">
@@ -676,16 +657,6 @@
     <entry file="file://$PROJECT_DIR$/requirements-analysis.txt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/features.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2516">
-          <caret line="150" column="77" selection-start-line="150" selection-start-column="77" selection-end-line="150" selection-end-column="77" />
-          <folding>
-            <element signature="e#1075#1093#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/bootstrap.py" />
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
@@ -702,25 +673,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dual_net.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7378">
-          <caret line="446" column="11" selection-start-line="446" selection-start-column="4" selection-end-line="446" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/dual_net.py" />
     <entry file="file://$PROJECT_DIR$/player_interface.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1479" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/train.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="17" selection-start-line="14" selection-start-column="17" selection-end-line="14" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/train.py" />
     <entry file="file://$PROJECT_DIR$/mcts.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3859">
@@ -734,26 +693,6 @@
     <entry file="file://$PROJECT_DIR$/validate.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/selfplay_utils.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-850">
-          <caret line="25" selection-start-line="25" selection-end-line="25" />
-          <folding>
-            <element signature="e#0#13#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/selfplay.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="575">
-          <caret line="48" column="63" selection-start-line="48" selection-start-column="12" selection-end-line="48" selection-end-column="63" />
-          <folding>
-            <element signature="e#580#595#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/preprocessing.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-221">
@@ -764,39 +703,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/train_from_disk.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="35" column="60" selection-start-line="35" selection-start-column="60" selection-end-line="35" selection-end-column="60" />
-          <folding>
-            <element signature="e#0#37#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gtp_engine.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="68" column="24" selection-start-line="68" selection-start-column="24" selection-end-line="68" selection-end-column="24" />
-          <folding>
-            <element signature="e#693#707#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/go.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="70" column="10" selection-start-line="70" selection-start-column="4" selection-end-line="70" selection-end-column="10" />
-          <folding>
-            <element signature="e#828#862#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/strategies.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="388">
+        <state relative-caret-position="4454">
           <caret line="273" column="16" selection-start-line="273" selection-start-column="16" selection-end-line="273" selection-end-column="16" />
           <folding>
             <element signature="e#576#585#0" expanded="true" />
@@ -806,7 +715,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/gtp.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
+        <state relative-caret-position="680">
           <caret line="51" column="16" selection-start-line="51" selection-start-column="16" selection-end-line="51" selection-end-column="16" />
           <folding>
             <element signature="e#621#630#0" expanded="true" />
@@ -814,12 +723,84 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/go.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1088">
+          <caret line="70" column="10" selection-start-line="70" selection-start-column="4" selection-end-line="70" selection-end-column="10" />
+          <folding>
+            <element signature="e#828#862#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/features.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2550">
+          <caret line="150" column="77" selection-start-line="150" selection-start-column="77" selection-end-line="150" selection-end-column="77" />
+          <folding>
+            <element signature="e#1075#1093#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mask_flags.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-99" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/selfplay_utils.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="25" selection-start-line="25" selection-end-line="25" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/selfplay.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="130">
+          <caret line="20" column="52" lean-forward="true" selection-start-line="20" selection-start-column="52" selection-end-line="20" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/train_from_disk.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="27" column="78" selection-start-line="27" selection-start-column="78" selection-end-line="27" selection-end-column="78" />
+          <folding>
+            <element signature="e#0#37#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gtp_engine.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" column="16" lean-forward="true" selection-start-line="20" selection-start-column="16" selection-end-line="20" selection-end-column="16" />
+          <folding>
+            <element signature="e#693#707#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/policy_value_net.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="277">
-          <caret line="73" column="30" lean-forward="true" selection-start-line="73" selection-start-column="30" selection-end-line="73" selection-end-column="30" />
+        <state relative-caret-position="-51">
+          <caret line="18" column="13" lean-forward="true" selection-start-line="17" selection-end-line="20" selection-end-column="30" />
           <folding>
             <element signature="e#116#128#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/residual_policy_value_net.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="52" column="74" selection-start-line="52" selection-start-column="74" selection-end-line="52" selection-end-column="74" />
+          <folding>
+            <element signature="e#0#12#0" expanded="true" />
           </folding>
         </state>
       </provider>

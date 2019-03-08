@@ -17,7 +17,8 @@
 
 
 import argparse
-from policy_value_net import PolicyValueNet
+#from policy_value_net import PolicyValueNet
+from residual_policy_value_net import PolicyValueNet
 import torch
 import torch.multiprocessing as mp
 from selfplay_utils import run_many_game
