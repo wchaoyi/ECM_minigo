@@ -136,13 +136,14 @@ python3 selfplay.py --use_gpu=True --num_processes=4 --nb_games=10000 \
 Training
 --------
 
-This command takes a directory of tf.Example files from selfplay and trains a
-new model, starting from the latest model weights in the `estimator_working_dir`
-parameter.
+This command takes the model name of the model you want to train, assuming selfplay data has already 
+been gererated and run and trains and saves a
+new model.
 
 Run the training job:
 
 ```shell
+python3 train_from_disk.py --model_path=models --model_name=resnet18_10 --epochs=40
 
 ```
 
