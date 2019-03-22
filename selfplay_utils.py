@@ -79,6 +79,9 @@ def run_game(network, args, device=None, sgf_dir=None, holdout_pct=0.05):
     utils.ensure_dir_exists(selfplay_dir)
     holdout_dir = os.path.join(args.holdout_dir, args.model_name)
     utils.ensure_dir_exists(holdout_dir)
+    if args.sgf_dir :
+        sgf_dir= os.path.join(args.sgf_dir, args.model_name)
+        utils.ensure_dir_exists(sgf_dir)
     if sgf_dir is not None:
         minimal_sgf_dir = os.path.join(sgf_dir, 'clean')
         full_sgf_dir = os.path.join(sgf_dir, 'full')

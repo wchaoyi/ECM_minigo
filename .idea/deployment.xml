@@ -2,13 +2,6 @@
 <project version="4">
   <component name="PublishConfigData" autoUpload="Always" serverName="l18033822@gt-0.luminy.univ-amu.fr:8012">
     <serverData>
-      <paths name="gt-1.luminy.univ-amu.fr">
-        <serverdata>
-          <mappings>
-            <mapping deploy="/ECM_minigo" local="$PROJECT_DIR$" />
-          </mappings>
-        </serverdata>
-      </paths>
       <paths name="l18033822@gt-0.luminy.univ-amu.fr:8012">
         <serverdata>
           <mappings>

@@ -41,7 +41,9 @@ if __name__ == '__main__':
 
     for rank in range(args.num_processes):
         p = mp.Process(target=run_many_game, args=(network1 if rank<args.num_processes/2 else network2,
-                                                   args, device1 if rank<args.num_processes/2 else device2))
+                                                  args, device1 if rank<args.num_processes/2 else device2))
+        #p = mp.Process(target=run_many_game, args=(network2,
+         #                                          args, device2))
         p.start()
         processes.append(p)
     for p in processes:

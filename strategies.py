@@ -32,7 +32,7 @@ strat_parser.add_argument('--softpick_move_cutoff', default=(go.N * go.N // 12) 
 # Ensure that both white and black have an equal number of softpicked moves.
 #flags.register_validator('softpick_move_cutoff', lambda x: x % 2 == 0)
 
-strat_parser.add_argument('--resign_threshold', default=-0.9, type=float,
+strat_parser.add_argument('--resign_threshold', default=-0.99, type=float,
                    help='The post-search Q evaluation at which resign should happen.'
                    'A threshold of -1 implies resign is disabled.')
 #flags.register_validator('resign_threshold', lambda x: -1 <= x < 0)
