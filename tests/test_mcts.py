@@ -15,7 +15,7 @@
 import copy
 import math
 import numpy as np
-
+import torch
 import coords
 import go
 import mcts
@@ -65,6 +65,7 @@ SEND_TWO_RETURN_ONE = go.Position(
 class TestMctsNodes(test_utils.MiniGoUnitTest):
     def test_upper_bound_confidence(self):
         probs = np.array([.02] * (go.N * go.N + 1))
+        probs = torch.tensor([.02] * (go.N * go.N + 1))
         root = mcts.MCTSNode(go.Position())
         leaf = root.select_leaf()
         self.assertEqual(root, leaf)
@@ -112,8 +113,8 @@ class TestMctsNodes(test_utils.MiniGoUnitTest):
         probs = probs + np.random.random([go.N * go.N + 1]) * 0.001
         black_root = mcts.MCTSNode(go.Position())
         white_root = mcts.MCTSNode(go.Position(to_play=go.WHITE))
-        black_root.select_leaf().incorporate_results(probs, 0, black_root)
-        white_root.select_leaf().incorporate_results(probs, 0, white_root)
+        black_root.select_leaf().incorporate_results(probs, torch.tensor(0), black_root)
+        white_root.select_leaf().incorporate_results(probs, torch.tensor(0), white_root)
         # No matter who is to play, when we know nothing else, the priors
         # should be respected, and the same move should be picked
         black_leaf = black_root.select_leaf()
@@ -135,10 +136,10 @@ class TestMctsNodes(test_utils.MiniGoUnitTest):
     def test_backup_incorporate_results(self):
         probs = np.array([.02] * (go.N * go.N + 1))
         root = mcts.MCTSNode(SEND_TWO_RETURN_ONE)
-        root.select_leaf().incorporate_results(probs, 0, root)
+        root.select_leaf().incorporate_results(probs, torch.tensor(0), root)
 
         leaf = root.select_leaf()
-        leaf.incorporate_results(probs, -1, root)  # white wins!
+        leaf.incorporate_results(probs, torch.tensor(-1), root)  # white wins!
 
         # Root was visited twice: first at the root, then at this child.
         self.assertEqual(root.N, 2)
@@ -161,7 +162,7 @@ class TestMctsNodes(test_utils.MiniGoUnitTest):
         # which happens in this test because root is W to play and leaf was a W win.
         self.assertEqual(go.WHITE, root.position.to_play)
         leaf2 = root.select_leaf()
-        leaf2.incorporate_results(probs, -0.2, root)  # another white semi-win
+        leaf2.incorporate_results(probs, torch.tensor(-0.2, dtype=torch.float32), root)  # another white semi-win
         self.assertEqual(3, root.N)
         # average of 0, 0, -1, -0.2
         self.assertAlmostEqual(-0.3, root.Q)

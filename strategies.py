@@ -32,7 +32,7 @@ strat_parser.add_argument('--softpick_move_cutoff', default=(go.N * go.N // 12) 
 # Ensure that both white and black have an equal number of softpicked moves.
 #flags.register_validator('softpick_move_cutoff', lambda x: x % 2 == 0)
 
-strat_parser.add_argument('--resign_threshold', default=-0.99, type=float,
+strat_parser.add_argument('--resign_threshold', default=-1, type=float,
                    help='The post-search Q evaluation at which resign should happen.'
                    'A threshold of -1 implies resign is disabled.')
 #flags.register_validator('resign_threshold', lambda x: -1 <= x < 0)
@@ -129,7 +129,11 @@ class MCTSPlayer(MCTSPlayerInterface):
         incorporate_results, and pick_move
         '''
         start = time.time()
-
+        #self.root.illegal_move=1-self.root.position.all_legal_moves()
+        #dbg(self.root.position.to_play)
+        dbg(self.root.illegal_moves[:-1].reshape((9,9)))
+        dbg((1 - self.root.position.all_legal_moves())[:-1].reshape((9,9)))
+        dbg(self.root.child_action_score[:-1].reshape((9,9)))
         if self.timed_match:
             while time.time() - start < self.seconds_per_move:
                 self.tree_search()
@@ -210,7 +214,7 @@ class MCTSPlayer(MCTSPlayerInterface):
             leaves.append(leaf)
             leaves_ft.append(extract_features(leaf.position))
         if leaves:
-            leaves_np=np.array(leaves_ft)
+            leaves_np = np.array(leaves_ft)
             move_probs, values = self.network.policy_value_fn(leaves_np, device=self.device)
             for leaf, move_prob, value in zip(leaves, move_probs, values):
                 leaf.revert_virtual_loss(up_to=self.root)

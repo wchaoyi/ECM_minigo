@@ -19,13 +19,14 @@ import sys
 
 from absl import app, flags
 
-import policy_value_net
-import residual_policy_value_net
 from gtp_cmd_handlers import (
     BasicCmdHandler, KgsCmdHandler, GoGuiCmdHandler, MiniguiBasicCmdHandler, RegressionsCmdHandler)
 import gtp_engine
 from strategies import MCTSPlayer, CGOSPlayer
 from utils import dbg
+
+import policy_value_net
+import residual_policy_value_net
 import torch
 
 

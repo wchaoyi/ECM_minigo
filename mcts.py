@@ -26,6 +26,7 @@ import numpy as np
 
 import coords
 import go
+from utils import dbg
 
 # 722 moves for 19x19, 162 for 9x9
 mcts_parser =  argparse.ArgumentParser(description='mcts_parser')
@@ -96,7 +97,7 @@ class MCTSNode(object):
     @property
     def child_action_score(self):
         return (self.child_Q * self.position.to_play +
-                self.child_U - 1e10 * self.illegal_moves)
+                self.child_U - 1000 * (1-self.position.all_legal_moves()))
 
     @property
     def child_Q(self):
@@ -146,7 +147,9 @@ class MCTSNode(object):
                     current.child_N[pass_move] == 0):
                 current = current.maybe_add_child(pass_move)
                 continue
-
+            #dbg(current.child_action_score[:-1].reshape((9,9)))
+            #dbg(self.illegal_moves[:-1].reshape((9,9)))
+            #dbg(self.position.to_play)
             best_move = np.argmax(current.child_action_score)
             current = current.maybe_add_child(best_move)
         return current

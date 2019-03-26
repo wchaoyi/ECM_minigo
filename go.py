@@ -25,7 +25,7 @@ import copy
 import itertools
 import numpy as np
 import os
-
+from utils import dbg
 import coords
 
 N = int(os.environ.get('BOARD_SIZE', 9))
@@ -450,6 +450,7 @@ class Position():
         # Positional superko (this is very crudely approximate at the moment.)
         if color is None:
             color = self.to_play
+        #dbg(color)
 
         pos = self if mutate else copy.deepcopy(self)
 
@@ -458,9 +459,9 @@ class Position():
             return pos
 
         if not self.is_move_legal(c):
-            raise IllegalMove("{} move at {} is illegal: \n{}".format(
+            raise IllegalMove("{} move at {} is illegal: \n{}. Legal moves are \n{}.".format(
                 "Black" if self.to_play == BLACK else "White",
-                coords.to_gtp(c), self))
+                coords.to_gtp(c), self, self.all_legal_moves()[:-1].reshape((9, 9))))
 
         potential_ko = is_koish(self.board, c)
 

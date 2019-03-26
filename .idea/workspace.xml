@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6e280fe0-8eca-4e90-8ea9-dcd0b53f1e94" name="Default" comment="Last changes">
+    <list default="true" id="6e280fe0-8eca-4e90-8ea9-dcd0b53f1e94" name="Default" comment="Illegal move bug fixes update">
+      <change afterPath="$PROJECT_DIR$/twogtp.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/evaluate.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.py" beforeDir="false" afterPath="$PROJECT_DIR$/go.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gtp.py" beforeDir="false" afterPath="$PROJECT_DIR$/gtp.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gtp_cmd_handlers.py" beforeDir="false" afterPath="$PROJECT_DIR$/gtp_cmd_handlers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mcts.py" beforeDir="false" afterPath="$PROJECT_DIR$/mcts.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/strategies.py" beforeDir="false" afterPath="$PROJECT_DIR$/strategies.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_mcts.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_mcts.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -12,8 +19,9 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/ECM_minigo$selfplay.coverage" NAME="selfplay Coverage Results" MODIFIED="1553078432601" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/ECM_minigo$selfplay.coverage" NAME="selfplay Coverage Results" MODIFIED="1553538385535" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/ECM_minigo$train.coverage" NAME="train Coverage Results" MODIFIED="1551702934025" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/ECM_minigo$Unittests_in_test_mcts_py.coverage" NAME="Unittests in test_mcts.py Coverage Results" MODIFIED="1553537763537" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
     <SUITE FILE_PATH="coverage/ECM_minigo$train_from_disk.coverage" NAME="train_from_disk Coverage Results" MODIFIED="1552996118865" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/ECM_minigo$bootstrap.coverage" NAME="bootstrap Coverage Results" MODIFIED="1550585429498" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
@@ -36,11 +44,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/mcts.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="724">
-              <caret line="112" lean-forward="true" selection-start-line="112" selection-end-line="112" />
+            <state relative-caret-position="1683">
+              <caret line="99" column="74" lean-forward="true" selection-start-line="99" selection-start-column="74" selection-end-line="99" selection-end-column="74" />
               <folding>
                 <element signature="e#716#734#0" expanded="true" />
               </folding>
@@ -48,23 +56,59 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/README.md">
-          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-            <state split_layout="SPLIT">
-              <first_editor relative-caret-position="518">
-                <caret line="140" column="10" selection-start-line="140" selection-start-column="10" selection-end-line="140" selection-end-column="10" />
-              </first_editor>
-              <second_editor />
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/go.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="322">
+              <caret line="452" column="9" selection-start-line="452" selection-start-column="9" selection-end-line="452" selection-end-column="9" />
+              <folding>
+                <element signature="e#828#862#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/coords.py">
+        <entry file="file://$PROJECT_DIR$/strategies.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="765">
-              <caret line="45" column="4" selection-start-line="45" selection-start-column="4" selection-end-line="45" selection-end-column="4" />
+            <state relative-caret-position="321">
+              <caret line="137" column="30" selection-start-line="137" selection-start-column="30" selection-end-line="137" selection-end-column="30" />
+              <folding>
+                <element signature="e#576#585#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/selfplay_utils.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="607">
+              <caret line="83" column="39" selection-start-line="83" selection-start-column="39" selection-end-line="83" selection-end-column="39" />
+              <folding>
+                <element signature="e#0#13#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/twogtp.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="17">
+              <caret line="187" column="8" selection-start-line="187" selection-start-column="8" selection-end-line="187" selection-end-column="8" />
+              <folding>
+                <element signature="e#1775#1795#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/gtp.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="340">
+              <caret line="20" selection-start-line="20" selection-end-line="20" />
             </state>
           </provider>
         </entry>
@@ -80,36 +124,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>policy_value_fn(</find>
-      <find>run_ma</find>
-      <find>child_W</find>
-      <find>node</find>
-      <find>deta</find>
-      <find>self.data</find>
-      <find>self.episode_len</find>
-      <find>extract</find>
-      <find>self.policy</find>
-      <find>integer</find>
-      <find>remove</find>
-      <find>args.verbose</find>
-      <find>parser</find>
-      <find>flags</find>
-      <find>parallel_readouts</find>
-      <find>num_readouts</find>
-      <find>readouts</find>
-      <find>flags.</find>
-      <find>flags.DEFINE</find>
-      <find>FLAGS</find>
-      <find>self.optimizer</find>
-      <find>replay</find>
-      <find>-</find>
-      <find>make_gtp</find>
       <find>make</find>
       <find>self.input</find>
       <find>set</find>
       <find>go.</find>
-      <find>play_move</find>
+      <find>1e10</find>
       <find>illegal</find>
+      <find>illegal mov</find>
+      <find>incorporate</find>
+      <find>incorpo</find>
+      <find>incorporate_results</find>
+      <find>incorporate_results(</find>
+      <find>inc</find>
+      <find>color</find>
+      <find>translate_gtp_color</find>
+      <find>genmove</find>
+      <find>two_player_mode</find>
+      <find>BasicCmd</find>
+      <find>_player</find>
+      <find>class Po</find>
+      <find>to_play</find>
+      <find>error</find>
+      <find>value</find>
+      <find>two_player</find>
+      <find>all_legal</find>
+      <find>resign</find>
+      <find>gogui</find>
+      <find>select_leaf</find>
+      <find>dbg</find>
+      <find>self.to_play</find>
+      <find>play_move</find>
     </findStrings>
     <replaceStrings>
       <replace>coords.to_gtp</replace>
@@ -139,14 +183,12 @@
         <option value="$PROJECT_DIR$/dual_net.py" />
         <option value="$PROJECT_DIR$/coords.py" />
         <option value="$PROJECT_DIR$/gtp_engine.py" />
-        <option value="$PROJECT_DIR$/gtp_cmd_handlers.py" />
         <option value="$PROJECT_DIR$/dual_net_pytorch.py" />
         <option value="$PROJECT_DIR$/bootstrap.py" />
         <option value="$PROJECT_DIR$/mcts_alphaZero.py" />
         <option value="$PROJECT_DIR$/mcts_pure.py" />
         <option value="$PROJECT_DIR$/features.py" />
         <option value="$PROJECT_DIR$/train.py" />
-        <option value="$PROJECT_DIR$/go.py" />
         <option value="$PROJECT_DIR$/policy_value_net.py" />
         <option value="$PROJECT_DIR$/estimator_working_dir/residual_policy_value_net.py" />
         <option value="$PROJECT_DIR$/residual_policy_value_net.py" />
@@ -154,10 +196,14 @@
         <option value="$PROJECT_DIR$/selfplay.py" />
         <option value="$PROJECT_DIR$/selfplay_utils.py" />
         <option value="$PROJECT_DIR$/train_from_disk.py" />
-        <option value="$PROJECT_DIR$/gtp.py" />
-        <option value="$PROJECT_DIR$/mcts.py" />
-        <option value="$PROJECT_DIR$/strategies.py" />
         <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/twogtp.py" />
+        <option value="$PROJECT_DIR$/tests/test_mcts.py" />
+        <option value="$PROJECT_DIR$/gtp_cmd_handlers.py" />
+        <option value="$PROJECT_DIR$/gtp.py" />
+        <option value="$PROJECT_DIR$/go.py" />
+        <option value="$PROJECT_DIR$/strategies.py" />
+        <option value="$PROJECT_DIR$/mcts.py" />
       </list>
     </option>
   </component>
@@ -172,7 +218,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -180,10 +225,16 @@
               <item name="ECM_minigo" type="b2602c69:ProjectViewProjectNode" />
               <item name="ECM_minigo" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="ECM_minigo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ECM_minigo" type="462c0819:PsiDirectoryNode" />
+              <item name="tests" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -193,8 +244,10 @@
     <property name="WebServerToolWindowPanel.toolwindow.show.date" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../ECM_minigo_copie_stable/gtp_cmd_handlers.py" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="web.server" />
+    <property name="two.files.diff.last.used.file" value="$PROJECT_DIR$/../ECM_minigo_copie_stable/gtp_cmd_handlers.py" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -250,7 +303,7 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/selfplay.py" />
-      <option name="PARAMETERS" value="--use_gpu=True --num_processes=4 --nb_games=10000 --model_path=models --model_name=resnet18_9 --sgf_dir=outputs/sgf" />
+      <option name="PARAMETERS" value="--use_gpu=True --num_processes=1 --nb_games=10000 --model_path=models --model_name=resnet18_11 --sgf_dir=outputs/sgf" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -280,14 +333,31 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="Unittests in test_mcts.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <module name="ECM_minigo" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/tests/test_mcts.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
     <list>
       <item itemvalue="Python.bootstrap" />
       <item itemvalue="Python.selfplay" />
       <item itemvalue="Python.train_from_disk" />
+      <item itemvalue="Python tests.Unittests in test_mcts.py" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Python.selfplay" />
+        <item itemvalue="Python tests.Unittests in test_mcts.py" />
         <item itemvalue="Python.train_from_disk" />
         <item itemvalue="Python.bootstrap" />
       </list>
@@ -339,7 +409,10 @@
       <workItem from="1553086465424" duration="621000" />
       <workItem from="1553243779388" duration="326000" />
       <workItem from="1553267948631" duration="5672000" />
-      <workItem from="1553274336669" duration="553000" />
+      <workItem from="1553274336669" duration="3051000" />
+      <workItem from="1553277613689" duration="3306000" />
+      <workItem from="1553522097232" duration="21521000" />
+      <workItem from="1553600588082" duration="7481000" />
     </task>
     <task id="LOCAL-00001" summary="Reprise de la solution de tensorflow pour l'erreur de upper/lower case">
       <created>1549971661713</created>
@@ -467,11 +540,50 @@
       <option name="project" value="LOCAL" />
       <updated>1553273580857</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="Readme update">
+      <created>1553274946254</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1553274946254</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
+  <component name="TestHistory">
+    <history-entry file="Unittests_in_test_mcts_py - 2019.03.25 at 19h 06m 30s.xml">
+      <configuration name="Unittests in test_mcts.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_in_test_mcts_py - 2019.03.25 at 19h 06m 39s.xml">
+      <configuration name="Unittests in test_mcts.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_in_test_mcts_py - 2019.03.25 at 19h 07m 36s.xml">
+      <configuration name="Unittests in test_mcts.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_in_test_mcts_py - 2019.03.25 at 19h 09m 55s.xml">
+      <configuration name="Unittests in test_mcts.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_in_test_mcts_py - 2019.03.25 at 19h 10m 56s.xml">
+      <configuration name="Unittests in test_mcts.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_in_test_mcts_py - 2019.03.25 at 19h 13m 44s.xml">
+      <configuration name="Unittests in test_mcts.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_in_test_mcts_py - 2019.03.25 at 19h 14m 06s.xml">
+      <configuration name="Unittests in test_mcts.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_in_test_mcts_py - 2019.03.25 at 19h 14m 48s.xml">
+      <configuration name="Unittests in test_mcts.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_in_test_mcts_py - 2019.03.25 at 19h 15m 02s.xml">
+      <configuration name="Unittests in test_mcts.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_in_test_mcts_py - 2019.03.25 at 19h 16m 05s.xml">
+      <configuration name="Unittests in test_mcts.py" configurationId="tests" />
+    </history-entry>
+  </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="225814000" />
+    <option name="totallyTimeSpent" value="260620000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -484,9 +596,34 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="30" width="1920" height="1050" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16185898" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.16666667" />
+      <window_info id="Remote Host" order="1" sideWeight="0.49905482" weight="0.2008547" />
+      <window_info id="Structure" order="2" visible="true" weight="0.25320512" />
+      <window_info id="Favorites" order="3" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32893288" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49893162" weight="0.6732673" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.29812983" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info active="true" anchor="bottom" id="TODO" order="6" visible="true" weight="0.3278328" />
+      <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.49946582" weight="0.32893288" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.32893288" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5005342" side_tool="true" weight="0.3839384" />
+      <window_info anchor="bottom" id="Python Console" order="10" weight="0.32893288" />
+      <window_info anchor="bottom" id="Docker" order="11" show_stripe_button="false" />
+      <window_info anchor="bottom" id="File Transfer" order="12" sideWeight="0.49946582" weight="0.23322332" />
+      <window_info anchor="bottom" id="Database Changes" order="13" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" x="0" y="0" width="165" height="624" id="Documentation" order="3" sideWeight="0.50165015" side_tool="true" visible="true" weight="0.20192307" />
+      <window_info anchor="right" id="Database" order="4" sideWeight="0.49834985" weight="0.32959402" />
+      <window_info anchor="right" id="SciView" order="5" weight="0.32959402" />
+    </layout>
+    <layout-to-restore>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16346154" />
       <window_info id="Remote Host" order="1" sideWeight="0.49905482" weight="0.2008547" />
       <window_info id="Structure" order="2" weight="0.25320512" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -502,40 +639,14 @@
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5005342" side_tool="true" weight="0.3839384" />
       <window_info anchor="bottom" id="Python Console" order="10" weight="0.32893288" />
       <window_info anchor="bottom" id="Docker" order="11" show_stripe_button="false" />
-      <window_info anchor="bottom" id="File Transfer" order="12" sideWeight="0.49946582" weight="0.23322332" />
+      <window_info anchor="bottom" id="File Transfer" order="12" sideWeight="0.49946582" visible="true" weight="0.23322332" />
       <window_info anchor="bottom" id="Database Changes" order="13" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info active="true" anchor="right" x="0" y="0" width="165" height="624" id="Documentation" order="3" sideWeight="0.50165015" side_tool="true" visible="true" weight="0.20192307" />
+      <window_info anchor="right" x="0" y="0" width="165" height="624" id="Documentation" order="3" sideWeight="0.50165015" side_tool="true" visible="true" weight="0.20192307" />
       <window_info anchor="right" id="Database" order="4" sideWeight="0.49834985" weight="0.32959402" />
       <window_info anchor="right" id="SciView" order="5" weight="0.32959402" />
-    </layout>
-    <layout-to-restore>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19391026" />
-      <window_info id="Remote Host" order="1" sideWeight="0.49905482" weight="0.2008547" />
-      <window_info id="Structure" order="2" weight="0.25" />
-      <window_info id="Favorites" order="3" side_tool="true" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32893288" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.25852585" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.49946582" weight="0.32893288" />
-      <window_info anchor="bottom" id="Terminal" order="8" />
-      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5005342" side_tool="true" weight="0.32893288" />
-      <window_info anchor="bottom" id="Python Console" order="10" />
-      <window_info anchor="bottom" id="Docker" order="11" show_stripe_button="false" />
-      <window_info anchor="bottom" id="File Transfer" order="12" visible="true" weight="0.16061606" />
-      <window_info anchor="bottom" id="Database Changes" order="13" />
-      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" x="0" y="0" width="165" height="624" id="Documentation" order="3" sideWeight="0.50094515" side_tool="true" visible="true" weight="0.24732906" />
-      <window_info anchor="right" id="Database" order="4" />
-      <window_info anchor="right" id="SciView" order="5" />
     </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -556,16 +667,11 @@
     <MESSAGE value="preparing Resnet18" />
     <MESSAGE value="bug fixes" />
     <MESSAGE value="Last changes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Last changes" />
+    <MESSAGE value="Readme update" />
+    <MESSAGE value="Illegal move bug fixes update" />
+    <option name="LAST_COMMIT_MESSAGE" value="Illegal move bug fixes update" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/gtp_cmd_handlers.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="95" column="23" selection-start-line="95" selection-start-column="23" selection-end-line="95" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/__init__.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -638,29 +744,9 @@
     <entry file="file://$PROJECT_DIR$/validate.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/features.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2550">
-          <caret line="150" column="77" selection-start-line="150" selection-start-column="77" selection-end-line="150" selection-end-column="77" />
-          <folding>
-            <element signature="e#1075#1093#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mask_flags.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-99" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gtp_engine.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" column="16" lean-forward="true" selection-start-line="20" selection-start-column="16" selection-end-line="20" selection-end-column="16" />
-          <folding>
-            <element signature="e#693#707#0" expanded="true" />
-          </folding>
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/policy_value_net.py">
@@ -683,26 +769,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gtp.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="63">
-          <caret line="31" column="36" selection-start-line="31" selection-start-column="36" selection-end-line="31" selection-end-column="36" />
-          <folding>
-            <element signature="e#621#630#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/strategies.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="31" column="76" lean-forward="true" selection-start-line="31" selection-start-column="76" selection-end-line="31" selection-end-column="76" />
-          <folding>
-            <element signature="e#576#585#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/train_from_disk.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="607">
@@ -716,12 +782,83 @@
     <entry file="file://$PROJECT_DIR$/preprocessing.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/go.py">
+    <entry file="file://$PROJECT_DIR$/selfplay.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-5871">
-          <caret line="70" column="10" selection-start-line="70" selection-start-column="4" selection-end-line="70" selection-end-column="10" />
+        <state>
+          <caret lean-forward="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="2380">
+            <caret line="140" column="10" selection-start-line="140" selection-start-column="10" selection-end-line="140" selection-end-column="10" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/coords.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="765">
+          <caret line="45" column="4" selection-start-line="45" selection-start-column="4" selection-end-line="45" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/test_mcts.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="304">
+          <caret line="164" column="55" selection-start-line="164" selection-start-column="55" selection-end-line="164" selection-end-column="55" />
           <folding>
-            <element signature="e#828#862#0" expanded="true" />
+            <element signature="e#576#587#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gtp_engine.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1309">
+          <caret line="80" column="4" selection-start-line="80" selection-start-column="4" selection-end-line="80" selection-end-column="4" />
+          <folding>
+            <element signature="e#693#707#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gtp.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" selection-start-line="20" selection-end-line="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gtp_cmd_handlers.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+          <folding>
+            <element signature="e#576#605#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/features.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="607">
+          <caret line="99" column="27" selection-start-line="99" selection-start-column="27" selection-end-line="99" selection-end-column="27" />
+          <folding>
+            <element signature="e#1075#1093#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/twogtp.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="187" column="8" selection-start-line="187" selection-start-column="8" selection-end-line="187" selection-end-column="8" />
+          <folding>
+            <element signature="e#1775#1795#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -736,37 +873,33 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/selfplay.py">
+    <entry file="file://$PROJECT_DIR$/strategies.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret lean-forward="true" />
+        <state relative-caret-position="321">
+          <caret line="137" column="30" selection-start-line="137" selection-start-column="30" selection-end-line="137" selection-end-column="30" />
+          <folding>
+            <element signature="e#576#585#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/go.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="322">
+          <caret line="452" column="9" selection-start-line="452" selection-start-column="9" selection-end-line="452" selection-end-column="9" />
+          <folding>
+            <element signature="e#828#862#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/mcts.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="724">
-          <caret line="112" lean-forward="true" selection-start-line="112" selection-end-line="112" />
+        <state relative-caret-position="1683">
+          <caret line="99" column="74" lean-forward="true" selection-start-line="99" selection-start-column="74" selection-end-line="99" selection-end-column="74" />
           <folding>
             <element signature="e#716#734#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/coords.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="765">
-          <caret line="45" column="4" selection-start-line="45" selection-start-column="4" selection-end-line="45" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="518">
-            <caret line="140" column="10" selection-start-line="140" selection-start-column="10" selection-end-line="140" selection-end-column="10" />
-          </first_editor>
-          <second_editor />
         </state>
       </provider>
     </entry>
