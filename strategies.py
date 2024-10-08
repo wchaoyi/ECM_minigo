@@ -25,32 +25,32 @@ from utils import dbg
 from player_interface import MCTSPlayerInterface
 from features import extract_features
 
-
 strat_parser = argparse.ArgumentParser(description='strategies')
 strat_parser.add_argument('--softpick_move_cutoff', default=(go.N * go.N // 12) // 2 * 2, type=float,
-                     help='The move number (<) up to which moves are softpicked from MCTS visits.')
+                          help='The move number (<) up to which moves are softpicked from MCTS visits.')
 # Ensure that both white and black have an equal number of softpicked moves.
-#flags.register_validator('softpick_move_cutoff', lambda x: x % 2 == 0)
+# flags.register_validator('softpick_move_cutoff', lambda x: x % 2 == 0)
 
 strat_parser.add_argument('--resign_threshold', default=-1, type=float,
-                   help='The post-search Q evaluation at which resign should happen.'
-                   'A threshold of -1 implies resign is disabled.')
-#flags.register_validator('resign_threshold', lambda x: -1 <= x < 0)
+                          help='The post-search Q evaluation at which resign should happen.'
+                               'A threshold of -1 implies resign is disabled.')
+# flags.register_validator('resign_threshold', lambda x: -1 <= x < 0)
 
 strat_parser.add_argument('--num_readouts', default=800 if go.N == 19 else 200, type=int,
-                     help='Number of searches to add to the MCTS search tree before playing a move.')
-#flags.register_validator('num_readouts', lambda x: x > 0)
+                          help='Number of searches to add to the MCTS search tree before playing a move.')
+# flags.register_validator('num_readouts', lambda x: x > 0)
 
 strat_parser.add_argument('--parallel_readouts', default=8, type=int,
-                     help='Number of searches to execute in parallel. This is also the batch size'
-                     'for neural network evaluation.')
+                          help='Number of searches to execute in parallel. This is also the batch size'
+                               'for neural network evaluation.')
 
 strat_parser.add_argument('--verbose', default=0, type=int,
-                     help='Amount of explanations to give')
-#flags.declare_key_flag('num_readouts')
+                          help='Amount of explanations to give')
 
-#strat_args = flags.strat_args
 
+# flags.declare_key_flag('num_readouts')
+
+# strat_args = flags.strat_args
 
 
 def time_recommendation(move_num, seconds_per_move=5, time_limit=15 * 60,
@@ -129,11 +129,11 @@ class MCTSPlayer(MCTSPlayerInterface):
         incorporate_results, and pick_move
         '''
         start = time.time()
-        #self.root.illegal_move=1-self.root.position.all_legal_moves()
-        #dbg(self.root.position.to_play)
-        dbg(self.root.illegal_moves[:-1].reshape((9,9)))
-        dbg((1 - self.root.position.all_legal_moves())[:-1].reshape((9,9)))
-        dbg(self.root.child_action_score[:-1].reshape((9,9)))
+        # self.root.illegal_move=1-self.root.position.all_legal_moves()
+        # dbg(self.root.position.to_play)
+        dbg(self.root.illegal_moves[:-1].reshape((9, 9)))
+        dbg((1 - self.root.position.all_legal_moves())[:-1].reshape((9, 9)))
+        dbg(self.root.child_action_score[:-1].reshape((9, 9)))
         if self.timed_match:
             while time.time() - start < self.seconds_per_move:
                 self.tree_search()
@@ -198,7 +198,7 @@ class MCTSPlayer(MCTSPlayerInterface):
         if parallel_readouts is None:
             parallel_readouts = min(strat_args.parallel_readouts, self.num_readouts)
         leaves = []
-        leaves_ft=[]
+        leaves_ft = []
         failsafe = 0
         while len(leaves) < parallel_readouts and failsafe < parallel_readouts * 2:
             failsafe += 1
@@ -297,4 +297,5 @@ class CGOSPlayer(MCTSPlayer):
 def main(args):
     return strat_parser.parse_args(args)
 
-strat_args=strat_parser.parse_args('')
+
+strat_args = strat_parser.parse_args('')

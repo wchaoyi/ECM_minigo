@@ -29,24 +29,26 @@ import go
 from utils import dbg
 
 # 722 moves for 19x19, 162 for 9x9
-mcts_parser =  argparse.ArgumentParser(description='mcts_parser')
+mcts_parser = argparse.ArgumentParser(description='mcts_parser')
 mcts_parser.add_argument('--max_game_length', default=int(go.N ** 2 * 2), type=int,
-                     help='Move number at which game is forcibly terminated')
+                         help='Move number at which game is forcibly terminated')
 
 mcts_parser.add_argument('--c_puct', default=0.96, type=float,
-                   help='Exploration constant balancing priors vs. value net output.')
+                         help='Exploration constant balancing priors vs. value net output.')
 
 mcts_parser.add_argument('--dirichlet_noise_alpha', default=0.03 * 361 / (go.N ** 2), type=float,
-                   help='Concentrated-ness of the noise being injected into priors.')
-#flags.register_validator('dirichlet_noise_alpha', lambda x: 0 <= x < 1)
+                         help='Concentrated-ness of the noise being injected into priors.')
+# flags.register_validator('dirichlet_noise_alpha', lambda x: 0 <= x < 1)
 
 mcts_parser.add_argument('--dirichlet_noise_weight', default=0.25, type=float,
-                   help='How much to weight the priors vs. dirichlet noise when mixing')
-#flags.register_validator('dirichlet_noise_weight', lambda x: 0 <= x < 1)
+                         help='How much to weight the priors vs. dirichlet noise when mixing')
+# flags.register_validator('dirichlet_noise_weight', lambda x: 0 <= x < 1)
 
-#mcts_args = flags.mcts_args
+# mcts_args = flags.mcts_args
 
-mcts_args=mcts_parser.parse_args('')
+mcts_args = mcts_parser.parse_args('')
+
+
 class DummyNode(object):
     """A fake node of a MCTS search tree.
 
@@ -97,7 +99,7 @@ class MCTSNode(object):
     @property
     def child_action_score(self):
         return (self.child_Q * self.position.to_play +
-                self.child_U - 1000 * (1-self.position.all_legal_moves()))
+                self.child_U - 1000 * (1 - self.position.all_legal_moves()))
 
     @property
     def child_Q(self):
@@ -143,13 +145,13 @@ class MCTSNode(object):
             # HACK: if last move was a pass, always investigate double-pass first
             # to avoid situations where we auto-lose by passing too early.
             if (current.position.recent and
-                current.position.recent[-1].move is None and
+                    current.position.recent[-1].move is None and
                     current.child_N[pass_move] == 0):
                 current = current.maybe_add_child(pass_move)
                 continue
-            #dbg(current.child_action_score[:-1].reshape((9,9)))
-            #dbg(self.illegal_moves[:-1].reshape((9,9)))
-            #dbg(self.position.to_play)
+            # dbg(current.child_action_score[:-1].reshape((9,9)))
+            # dbg(self.illegal_moves[:-1].reshape((9,9)))
+            # dbg(self.position.to_play)
             best_move = np.argmax(current.child_action_score)
             current = current.maybe_add_child(best_move)
         return current

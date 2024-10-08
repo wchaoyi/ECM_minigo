@@ -6,6 +6,7 @@ from torch.autograd import Variable
 import parse
 import os
 
+
 def set_learning_rate(optimizer, lr):
     """Sets the learning rate to the given value"""
     for param_group in optimizer.param_groups:
@@ -13,7 +14,8 @@ def set_learning_rate(optimizer, lr):
 
 
 class BasicBlock(nn.Module):
-    expansion =1
+    expansion = 1
+
     def __init__(self, in_planes, planes, stride=1):
         super(BasicBlock, self).__init__()
         self.conv1 = nn.Conv2d(in_planes, planes, kernel_size=3, stride=stride, padding=1, bias=False)
@@ -22,13 +24,13 @@ class BasicBlock(nn.Module):
         self.bn2 = nn.BatchNorm2d(planes)
 
         self.shortcut = nn.Sequential()
-        if stride!=1 or in_planes != self.expansion*planes:
-            self.shortcut = nn.Sequential(nn.Conv2d(in_planes, self.expansion*planes, kernel_size=1, stride=stride, bias=False),
-                                          nn.BatchNorm2d(self.expansion*planes))
-
+        if stride != 1 or in_planes != self.expansion * planes:
+            self.shortcut = nn.Sequential(
+                nn.Conv2d(in_planes, self.expansion * planes, kernel_size=1, stride=stride, bias=False),
+                nn.BatchNorm2d(self.expansion * planes))
 
     def forward(self, x):
-        out=F.relu(self.bn1(self.conv1(x)))
+        out = F.relu(self.bn1(self.conv1(x)))
         out = self.bn2(self.conv2(out))
         out += self.shortcut(x)
         out = F.relu(out)
@@ -37,6 +39,7 @@ class BasicBlock(nn.Module):
 
 class Net(nn.Module):
     """policy-value network module"""
+
     def __init__(self, board_width, board_height, block, num_blocks=[2, 2, 2, 2]):
         super(Net, self).__init__()
 
@@ -60,7 +63,6 @@ class Net(nn.Module):
         self.val_fc1 = nn.Linear(2 * board_width * board_height, 64)
         self.val_fc2 = nn.Linear(64, 1)
 
-
         self.avgpool = nn.AdaptiveAvgPool2d((1, 1))
 
     def _make_layer(self, block, planes, num_blocks, stride):
@@ -78,14 +80,14 @@ class Net(nn.Module):
         out = self.layer2(out)
         out = self.layer3(out)
         out = self.layer4(out)
-        #out = self.avgpool(out)
+        # out = self.avgpool(out)
         # action policy layers
         x_act = F.relu(self.act_conv1(out))
-        x_act = x_act.view(-1, 4*self.board_width*self.board_height)
+        x_act = x_act.view(-1, 4 * self.board_width * self.board_height)
         x_act = F.log_softmax(self.act_fc1(x_act), dim=-1)
         # state value layers
         x_val = F.relu(self.val_conv1(out))
-        x_val = x_val.view(-1, 2*self.board_width*self.board_height)
+        x_val = x_val.view(-1, 2 * self.board_width * self.board_height)
         x_val = F.relu(self.val_fc1(x_val))
         x_val = torch.tanh(self.val_fc2(x_val))
         return x_act, x_val
@@ -93,6 +95,7 @@ class Net(nn.Module):
 
 class PolicyValueNet(torch.nn.Module):
     """policy-value network """
+
     def __init__(self, board_width, board_height,
                  model_path=None, model_name=None, use_gpu=False):
         super(PolicyValueNet, self).__init__()
@@ -103,15 +106,21 @@ class PolicyValueNet(torch.nn.Module):
         self.board_height = board_height
         self.l2_const = 1e-4  # coef of l2 penalty
         # the policy value net module
-        self.policy_value_net = Net(board_width, board_height, BasicBlock) #.cuda()
-        format_name='{}_{}'
-        self.model_prefix=str(parse.parse(format_name, self.model_name)[0])
-        self.model_num=int(parse.parse(format_name, self.model_name)[1])
+        self.policy_value_net = Net(board_width, board_height, BasicBlock)  # .cuda()
+        format_name = '{}_{}'
+        self.model_prefix = str(parse.parse(format_name, self.model_name)[0])
+        self.model_num = int(parse.parse(format_name, self.model_name)[1])
 
-        if os.path.isfile(os.path.join(model_path, model_name)):
-            net_params = torch.load(os.path.join(model_path, model_name), map_location=None if self.use_gpu else 'cpu')
+        new_name = '{}_{}'.format(self.model_prefix, self.model_num + 1)
+        if os.path.isfile(os.path.join(model_path, new_name)):
+            print("load", os.path.join(model_path, new_name))
+            net_params = torch.load(os.path.join(model_path, new_name), map_location=None if self.use_gpu else 'cpu')
             self.policy_value_net.load_state_dict(net_params)
 
+        elif os.path.isfile(os.path.join(model_path, model_name)):
+            print("load", os.path.join(model_path, model_name))
+            net_params = torch.load(os.path.join(model_path, model_name), map_location=None if self.use_gpu else 'cpu')
+            self.policy_value_net.load_state_dict(net_params)
 
     def policy_value(self, state_batch):
         """
@@ -136,13 +145,13 @@ class PolicyValueNet(torch.nn.Module):
         action and the score of the board state
         """
         if features.ndim == 3:
-            features=np.expand_dims(features, 0)
+            features = np.expand_dims(features, 0)
         if self.use_gpu:
             log_act_probs, value = self.policy_value_net(torch.tensor(features).to(device=device, dtype=torch.float))
             act_probs = np.exp(log_act_probs.data.cpu().numpy())
         else:
             log_act_probs, value = self.policy_value_net(
-                    Variable(torch.tensor(features.astype('uint8'))).float())
+                Variable(torch.tensor(features.astype('uint8'))).float())
             act_probs = np.exp(log_act_probs.data.numpy())
         return act_probs, value
 
@@ -168,15 +177,15 @@ class PolicyValueNet(torch.nn.Module):
         # define the loss = (z - v)^2 - pi^T * log(p) + c||theta||^2
         # Note: the L2 penalty is incorporated in optimizer
         value_loss = F.mse_loss(value.view(-1), winner_batch)
-        policy_loss = -torch.mean(torch.sum(mcts_probs*log_act_probs, 1))
+        policy_loss = -torch.mean(torch.sum(mcts_probs * log_act_probs, 1))
         loss = value_loss + policy_loss
         # backward and optimize
         loss.backward()
         self.optimizer.step()
         # calc policy entropy, for monitoring only
         entropy = -torch.mean(
-                torch.sum(torch.exp(log_act_probs) * log_act_probs, 1)
-                )
+            torch.sum(torch.exp(log_act_probs) * log_act_probs, 1)
+        )
         return loss.data[0], entropy.data[0]
 
     def get_policy_param(self):
@@ -186,8 +195,6 @@ class PolicyValueNet(torch.nn.Module):
     def save_model(self):
         """ save model params to file """
         net_params = self.get_policy_param()  # get model params
-        new_name='{}_{}'.format(self.model_prefix, self.model_num+1)
+        new_name = '{}_{}'.format(self.model_prefix, self.model_num + 1)
         torch.save(net_params, os.path.join(self.model_path, new_name))
         print('Saving {}'.format(new_name))
-
-
