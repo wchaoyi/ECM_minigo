@@ -1,3 +1,11 @@
+import os
+
+os.environ["OMP_NUM_THREADS"] = "2"  # export OMP_NUM_THREADS=4
+os.environ["OPENBLAS_NUM_THREADS"] = "2"  # export OPENBLAS_NUM_THREADS=4
+os.environ["MKL_NUM_THREADS"] = "2"  # export MKL_NUM_THREADS=6
+os.environ["VECLIB_MAXIMUM_THREADS"] = "2"  # export VECLIB_MAXIMUM_THREADS=4
+os.environ["NUMEXPR_NUM_THREADS"] = "2"  # export NUMEXPR_NUM_THREADS=6
+
 import argparse
 # from policy_value_net import PolicyValueNet
 from residual_policy_value_net import PolicyValueNet
@@ -23,7 +31,7 @@ parser.add_argument('--verbose', type=int, default=0, help='How much debug info 
 if __name__ == '__main__':
     args = parser.parse_args()
     mp.set_start_method('spawn')
-    args.use_gpu = False
+    # args.use_gpu = False
     device1 = torch.device('cuda:0' if args.use_gpu else 'cpu')
     device2 = torch.device('cuda:1' if args.use_gpu else 'cpu')
     print(device2, device1)
