@@ -1,3 +1,5 @@
+from __future__ import print_function
+
 import os
 
 os.environ["OMP_NUM_THREADS"] = "4"  # export OMP_NUM_THREADS=4
@@ -6,7 +8,6 @@ os.environ["MKL_NUM_THREADS"] = "6"  # export MKL_NUM_THREADS=6
 os.environ["VECLIB_MAXIMUM_THREADS"] = "4"  # export VECLIB_MAXIMUM_THREADS=4
 os.environ["NUMEXPR_NUM_THREADS"] = "6"  # export NUMEXPR_NUM_THREADS=6
 
-from __future__ import print_function
 from residual_policy_value_net import PolicyValueNet  # Pytorch
 from preprocessing import SelfPlayDataset
 from torch.utils import data as dt
@@ -18,7 +19,7 @@ import torch.nn.functional as F
 parser = argparse.ArgumentParser(description='train')
 parser.add_argument('--model_path', type=str, default=None, help='Path to model save files.')
 parser.add_argument('--model_name', type=str, default=None, help='Model name.')
-parser.add_argument('--use_gpu', type=bool, default=True, help='Wheter to use GPU')
+parser.add_argument('--use_gpu', type=bool, default=True, help='Whether to use GPU')
 parser.add_argument('--selfplay_dir', type=str, default='outputs/train', help='Where to write game data.')
 parser.add_argument('--holdout_dir', type=str, default='outputs/valid', help='Where to write held-out game data.')
 parser.add_argument('--epochs', type=int, default=1, help='epochs')
