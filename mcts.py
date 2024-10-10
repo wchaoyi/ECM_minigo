@@ -99,7 +99,8 @@ class MCTSNode(object):
     @property
     def child_action_score(self):
         return (self.child_Q * self.position.to_play +
-                self.child_U - 1000 * (1 - self.position.all_legal_moves()))
+                self.child_U - 1000 * (1 - self.position.all_legal_moves()) -
+                1000 * (1 - self.position.all_eyes()))  # not fill eye with same color
 
     @property
     def child_Q(self):

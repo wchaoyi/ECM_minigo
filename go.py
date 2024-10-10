@@ -46,9 +46,9 @@ def _check_bounds(c):
 
 
 NEIGHBORS = {(x, y): list(filter(_check_bounds, [
-    (x+1, y), (x-1, y), (x, y+1), (x, y-1)])) for x, y in ALL_COORDS}
+    (x + 1, y), (x - 1, y), (x, y + 1), (x, y - 1)])) for x, y in ALL_COORDS}
 DIAGONALS = {(x, y): list(filter(_check_bounds, [
-    (x+1, y+1), (x+1, y-1), (x-1, y+1), (x-1, y-1)])) for x, y in ALL_COORDS}
+    (x + 1, y + 1), (x + 1, y - 1), (x - 1, y + 1), (x - 1, y - 1)])) for x, y in ALL_COORDS}
 
 
 class IllegalMove(Exception):
@@ -185,7 +185,7 @@ class LibertyTracker():
             np.ones([N, N], dtype=np.int32)
         self.groups = groups or {}
         self.liberty_cache = liberty_cache if liberty_cache is not None else np.zeros([
-                                                                                      N, N], dtype=np.uint8)
+            N, N], dtype=np.uint8)
         self.max_group_id = max_group_id
 
     def __deepcopy__(self, memodict={}):
@@ -311,13 +311,14 @@ class Position():
         self.ko = ko
         self.recent = recent
         self.board_deltas = board_deltas if board_deltas is not None else np.zeros([
-                                                                                   0, N, N], dtype=np.int8)
+            0, N, N], dtype=np.int8)
         self.to_play = to_play
 
     def __deepcopy__(self, memodict={}):
         new_board = np.copy(self.board)
         new_lib_tracker = copy.deepcopy(self.lib_tracker)
-        return Position(new_board, self.n, self.komi, self.caps, new_lib_tracker, self.ko, self.recent, self.board_deltas, self.to_play)
+        return Position(new_board, self.n, self.komi, self.caps, new_lib_tracker, self.ko, self.recent,
+                        self.board_deltas, self.to_play)
 
     def __str__(self, colors=True):
         if colors:
@@ -423,6 +424,35 @@ class Position():
         # and pass is always legal
         return np.concatenate([legal_moves.ravel(), [1]])
 
+    def all_eyes(self):
+
+        eyes = np.zeros([N, N], dtype=np.int8)
+        # calculate which spots have 4 stones next to them
+        # padding is because the edge always counts as a lost liberty.
+        adjacent = np.ones([N + 2, N + 2], dtype=np.int8)
+        adjacent[1:-1, 1:-1] = np.abs(self.board)
+        num_adjacent_stones = (adjacent[:-2, 1:-1] + adjacent[1:-1, :-2] +
+                               adjacent[2:, 1:-1] + adjacent[1:-1, 2:])
+        # Surrounded spots are those that are empty and have 4 adjacent stones.
+        surrounded_spots = np.multiply(
+            (self.board == EMPTY),
+            (num_adjacent_stones == 4))
+
+        for coord in np.transpose(np.nonzero(surrounded_spots)):
+
+            not_eye = False
+
+            for neighbor in NEIGHBORS(coord):
+                if self.board[neighbor] != self.to_play:
+                    not_eye = True
+                    break
+
+            if not not_eye and is_eyeish(self.board, coord):  # 必须是自己的眼
+                eyes[tuple(coord)] = 1
+
+        # and pass is always legal
+        return np.concatenate([eyes.ravel(), [0]])
+
     def pass_move(self, mutate=False):
         pos = self if mutate else copy.deepcopy(self)
         pos.n += 1
@@ -450,7 +480,7 @@ class Position():
         # Positional superko (this is very crudely approximate at the moment.)
         if color is None:
             color = self.to_play
-        #dbg(color)
+        # dbg(color)
 
         pos = self if mutate else copy.deepcopy(self)
 
