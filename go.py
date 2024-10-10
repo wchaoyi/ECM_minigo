@@ -442,12 +442,12 @@ class Position():
 
             not_eye = False
 
-            for neighbor in NEIGHBORS(coord):
+            for neighbor in NEIGHBORS[tuple(coord)]:
                 if self.board[neighbor] != self.to_play:
                     not_eye = True
                     break
 
-            if not not_eye and is_eyeish(self.board, coord):  # 必须是自己的眼
+            if not not_eye and is_eyeish(self.board, tuple(coord)):  # 必须是自己的眼
                 eyes[tuple(coord)] = 1
 
         # and pass is always legal

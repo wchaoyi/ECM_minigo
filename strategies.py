@@ -132,7 +132,7 @@ class MCTSPlayer(MCTSPlayerInterface):
         # self.root.illegal_move=1-self.root.position.all_legal_moves()
         # dbg(self.root.position.to_play)
         dbg(self.root.illegal_moves[:-1].reshape((9, 9)))
-        dbg(self.root.all_eyes()[:-1].reshape((9, 9)))
+        dbg(self.root.position.all_eyes()[:-1].reshape((9, 9)))
         dbg((1 - self.root.position.all_legal_moves())[:-1].reshape((9, 9)))
         dbg(self.root.child_action_score[:-1].reshape((9, 9)))
         if self.timed_match:
